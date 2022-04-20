@@ -9,7 +9,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <a class="navbar-brand" href="{{ route('home') }}">
-                            <img src="{{ asset('images/logo/logo.png') }}" style="width:114px;height:30px;" alt="Brand Logo"/>
+                            <img src="{{ asset('images/logo.png') }}" style="width:114px;height:30px;" alt="Brand Logo"/>
                         </a>
                     </div>
                     <div>
