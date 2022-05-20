@@ -3,7 +3,7 @@
     <i class="c-icon c-icon-lg cil-menu"></i>
 </button>
 <a class="c-header-brand d-lg-none c-header-brand-sm-up-center" href="#">
-    <img src="https://laravel.com/img/logotype.min.svg" width="118" alt="Brand Logo">
+    <img src="{{ asset('images/logo.png') }}" width="118" alt="Brand Logo">
 </a>
 <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
         data-class="c-sidebar-lg-show" responsive="true">
@@ -15,7 +15,7 @@
     <li class="c-header-nav-item dropdown">
         <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button"
            aria-haspopup="true" aria-expanded="false">
-                {{ Auth::user()->name }}
+           {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu dropdown-menu-right pt-0">
             <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
