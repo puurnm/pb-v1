@@ -4,14 +4,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <!-- if breadcrumb is single-->
-            <span>Home</span>
+            <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <span>User</span>
+            <a href="{{ route('users.index') }}">User</a>
         </li>
         <li class="breadcrumb-item active">
-            <span>Detail</span>
+            <a>Show</a>
         </li>
     </ol>
 </nav>
@@ -53,8 +52,8 @@
                             </p>
                         </div>
 
-                        <div class="card-footer">
-                            <a class="float-left" href="{{ route('users.create') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
+                        <div>
+                            <a class="float-left" href="{{ route('users.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
                         </div>
                     </div>
                 </div>

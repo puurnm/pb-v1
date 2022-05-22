@@ -35,18 +35,17 @@ Route::get('/contact-us', function () {
 // Route Administrator
 Route::prefix('admin')->group(function () {
     Auth::routes();
-});
-Route::redirect('/admin', '/admin/login');
-Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
-// Route Roles
-Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+<<<<<<< HEAD
 
 
     Route::get('berita', BeritaController::class);
     Route::get('berita/add',BeritaController::class);
 
+=======
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+>>>>>>> 513fe2bcbf2bfd85075b5949eddd32883a97a1ab
 });
+Route::redirect('/admin', '/admin/login');
