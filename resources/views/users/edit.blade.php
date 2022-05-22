@@ -4,14 +4,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <!-- if breadcrumb is single-->
-            <span>Home</span>
+            <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <span>User</span>
+            <a href="{{ route('users.index') }}">Users</a>
         </li>
         <li class="breadcrumb-item active">
-            <span>Edit</span>
+            <a>Edit</a>
         </li>
     </ol>
 </nav>

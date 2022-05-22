@@ -7,23 +7,23 @@
     </div>
     <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link c-active" href="{{ route('dashboard') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('dashboard') }}">
                 <i class="c-sidebar-nav-icon cil-home"></i>Dashboard
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link c-active" href="#">
+            <a class="c-sidebar-nav-link" href="#">
                 <i class="c-sidebar-nav-icon cil-newspaper"></i>Berita
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link c-active" href="{{ route('users.index') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('users.index') }}">
                 <i class="c-sidebar-nav-icon cil-user"></i>User
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link c-active" href="{{ route('roles.index') }}">
-                <i class="c-sidebar-nav-icon cil-user"></i>Role
+            <a class="c-sidebar-nav-link" href="{{ route('roles.index') }}">
+                <i class="c-sidebar-nav-icon cib-adguard"></i>Role
             </a>
         </li>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

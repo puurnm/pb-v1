@@ -1,48 +1,77 @@
 @extends('layouts.admin')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0 ms-2">
+        <li class="breadcrumb-item">
+            <a href="{{ route('dashboard') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a>Role</a>
+        </li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Role Management</h2>
-        </div>
-        <div class="pull-right">
-        @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-            @endcan
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        @include('flash::message')
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i>
+                        Role
+                        <a class="float-right" href="{{ route('roles.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped" id="roles-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Permission</th>
+                                        <th colspan="3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($roles as $key => $role)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $role->name }}</td>
+                                            <td>
+                                                @if(!empty($role->getPermissionNames()))
+                                                @foreach($role->getPermissionNames() as $v)
+                                                <label class="badge badge-success">{{ $v }}</label>
+                                                @endforeach
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
+                                                <div class='btn-group'>
+                                                    <a href="{{ route('roles.show', [$role->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                                                    @can('role-edit')
+                                                        <a href="{{ route('roles.edit', [$role->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('role-delete')
+                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                    @endcan
+                                                </div>
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pull-right mr-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
-
-<table class="table table-bordered">
-  <tr>
-     <th>ID</th>
-     <th>Name</th>
-     <th width="280px">Action</th>
-  </tr>
-    @foreach ($roles as $key => $role)
-    <tr>
-        <td>{{ $role->id }}</td>
-        <td>{{ $role->name }}</td>
-        <td>
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-            @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
-            @endcan
-            @can('role-delete')
-                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                {!! Form::close() !!}
-            @endcan
-        </td>
-    </tr>
-    @endforeach
-</table>
-{!! $roles->render() !!}
 @endsection

@@ -35,13 +35,9 @@ Route::get('/contact-us', function () {
 // Route Administrator
 Route::prefix('admin')->group(function () {
     Auth::routes();
-});
-Route::redirect('/admin', '/admin/login');
-Route::get('/admin/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
-// Route Roles
-Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 });
+Route::redirect('/admin', '/admin/login');

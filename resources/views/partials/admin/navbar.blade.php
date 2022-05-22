@@ -14,7 +14,7 @@
 <ul class="c-header-nav">
     <li class="c-header-nav-item dropdown">
         <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button"
-           aria-haspopup="true" aria-expanded="false">
+           aria-haspopup="true" aria-expanded="false"><i class="c-icon mfe-2 cil-user"></i>
            {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu dropdown-menu-right pt-0">

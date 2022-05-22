@@ -4,14 +4,13 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <!-- if breadcrumb is single-->
-            <span>Home</span>
+            <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <span>User</span>
+            <a href="{{ route('users.index') }}">User</a>
         </li>
         <li class="breadcrumb-item active">
-            <span>Create</span>
+            <a>Create</a>
         </li>
     </ol>
 </nav>
@@ -28,42 +27,44 @@
                         <strong>Create New User</strong>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => 'users.store']) !!}
+                        {!! Form::open(['route' => 'users.store', 'class' => 'needs-validation']) !!}
 
                         <!-- Nama Field -->
                         <div class="form-group col-sm-6">
                             {!! Form::label('name', 'Name :') !!}
-                            {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                            {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control', 'required']) !!}
                         </div>
 
                         <!-- Email Field -->
                         <div class="form-group col-sm-6">
                             {!! Form::label('email', 'Email :') !!}
-                            {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
+                            {!! Form::text('email', null, ['placeholder' => 'Email', 'class' => 'form-control', 'required']) !!}
                         </div>
 
                         <!-- Password Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('password', 'Password :') !!}
-                            {!! Form::text('password', null, ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
                         </div>
 
                         <!-- Confirm Password Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('confirm-password', 'Confirm Password :') !!}
-                            {!! Form::text('confirm-password', null, ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+                            <label for="confirm-password">Confirm Password :</label>
+                            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required>
                         </div>
 
                         <!-- Role Field -->
                         <div class="form-group col-sm-6">
                             {!! Form::label('role', 'Role :') !!}
-                            {!! Form::select('roles[]', $roles, null, ['placeholder' => 'Select Role', 'class' => 'form-control',]) !!}
+                            {!! Form::select('roles[]', $roles, null, ['placeholder' => 'Select Role', 'class' => 'form-control', 'required']) !!}
                         </div>
 
-                        <!-- Submit Field -->
-                        <div class="form-group col-sm-12">
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>
+                        <div class="card-footer">
+                            <!-- Submit Field -->
+                            <div class="form-group col-sm-12">
+                                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                                <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>
+                            </div>
                         </div>
 
                           {!! Form::close() !!}
