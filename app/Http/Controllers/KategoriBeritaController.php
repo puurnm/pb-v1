@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KategoriBerita;
+use Laracasts\Flash\Flash;
 
 class KategoriBeritaController extends Controller
 {
@@ -11,42 +12,88 @@ class KategoriBeritaController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
         $data_kategori = KategoriBerita::simplePaginate(10);
-        return view('kategori.index', compact('data_kategori'));
+        return view('admin.kategori.index', compact('data_kategori'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     public function create(){
-        $data_kategori = KategoriBerita::all();
-        return view('kategori.create', compact('data_kategori'));
+        return view('admin.kategori.create');
     }
 
-    public function news(Request $request) {
-        $kategori = new KategoriBerita;
-        $kategori->nama_kategori=$request->nama_kategori;
-        $kategori->save();
-        return back()->with('success','Kategori berhasil di simpan');
+    public function store(Request $request) {
+        request()->validate([
+            'nama_kategori' => 'required',
+        ]);
+
+        KategoriBerita::create($request->all());
+
+        return redirect()->route('kategori.index')
+                        ->with('success','Kategori created successfully.');
     }
 
-    public function edit($id) {
-        $kategori = KategoriBerita::find($id);
-        return view('kategori.edit',compact('kategori','id'));
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id_kategori)
+    {
+        $kategori = KategoriBerita::find($id_kategori);
+
+        if (empty($kategori)) {
+            Flash::error('Kategori not found');
+
+            return redirect(route('kategori.index'));
+        }
+
+        return view('admin.kategori.show',compact('kategori'));
     }
 
-    public function update(Request $request, $id) {
-        $kategori = KategoriBerita::find($id);
-        $this->validate(request(),[
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(KategoriBerita $kategori)
+    {
+        return view('admin.kategori.edit',compact('kategori'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, KategoriBerita $kategori)
+    {
+         request()->validate([
             'nama_kategori' => 'required'
         ]);
-        $kategori->nama_kategori = $request->get('nama_kategori');
-        $kategori->save();
-        return redirect('kategori')->with('success','Kategori berhasil di update');
+
+        $kategori->update($request->all());
+
+        return redirect()->route('kategori.index')
+                        ->with('success','Kategori updated successfully');
     }
 
-    public function destroy($id) {
-        //fungsi untuk menghapus data
-        $kategori = KategoriBerita::find($id);
-        $kategori->delete();
-        return redirect('kategori')->with('success','Data berhasil di hapus');
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        KategoriBerita::find($id)->delete();
+
+        Flash::success('Kategori deleted successfully.');
+
+        return redirect()->route('kategori.index');
     }
 }

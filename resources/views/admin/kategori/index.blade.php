@@ -38,7 +38,7 @@
                                 <tbody>
                                     @foreach($data_kategori as $kategori)
                                         <tr>
-                                            <td>{{ $kategori->id_kategori }}</td>
+                                            <td>{{ ++$i }}</td>
                                             <td>{{ $kategori->nama_kategori }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['kategori.destroy', $kategori->id_kategori], 'method' => 'delete']) !!}

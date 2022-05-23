@@ -43,7 +43,7 @@
 
                         <!-- Password Field -->
                         <div class="form-group col-sm-6">
-                            <label for="password">Password</label>
+                            <label for="password">Password :</label>
                             <input type="password" class="form-control" id="password" placeholder="Password" required>
                         </div>
 
