@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('users.index') }}">User</a>
+            <a href="{{ route('user.index') }}">User</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Show</a>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div>
-                            <a class="float-left" href="{{ route('users.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
+                            <a class="float-left" href="{{ route('user.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
                         </div>
                     </div>
                 </div>

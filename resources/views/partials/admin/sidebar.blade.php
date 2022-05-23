@@ -12,23 +12,23 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="#">
+            <a class="c-sidebar-nav-link" href="{{ route('berita.index') }}">
                 <i class="c-sidebar-nav-icon cil-newspaper"></i>Berita
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('users.index') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('kategori.index') }}">
+                <i class="c-sidebar-nav-icon cil-library"></i>Kategori
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('user.index') }}">
                 <i class="c-sidebar-nav-icon cil-user"></i>User
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('roles.index') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('role.index') }}">
                 <i class="c-sidebar-nav-icon cib-adguard"></i>Role
-            </a>
-        </li>
-        <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('kategori.index') }}">
-                <i class="c-sidebar-nav-icon cib-adguard"></i>Kategori
             </a>
         </li>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">

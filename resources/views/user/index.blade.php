@@ -23,7 +23,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         User
-                        <a class="float-right" href="{{ route('users.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        <a class="float-right" href="{{ route('user.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -51,10 +51,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                                                {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{{ route('users.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('users.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('user.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                                                    <a href="{{ route('user.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                                 </div>
                                                 {!! Form::close() !!}

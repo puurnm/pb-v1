@@ -23,7 +23,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         Role
-                        <a class="float-right" href="{{ route('roles.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        <a class="float-right" href="{{ route('role.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -49,11 +49,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
+                                                {!! Form::open(['route' => ['role.destroy', $role->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{{ route('roles.show', [$role->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                                                    <a href="{{ route('role.show', [$role->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                                                     @can('role-edit')
-                                                        <a href="{{ route('roles.edit', [$role->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                        <a href="{{ route('role.edit', [$role->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
                                                     @can('role-delete')
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
@@ -65,6 +65,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {!! $roles->render() !!}
                         </div>
                         <div class="pull-right mr-3">
                         </div>

@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('roles.index') }}">Role</a>
+            <a href="{{ route('role.index') }}">Role</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Create</a>
@@ -27,7 +27,7 @@
                         <strong>Create New Role</strong>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => 'roles.store', 'class' => 'needs-validation']) !!}
+                        {!! Form::open(['route' => 'role.store', 'class' => 'needs-validation']) !!}
 
                         <!-- Nama Field -->
                         <div class="form-group col-sm-6">
@@ -50,7 +50,7 @@
                             <!-- Submit Field -->
                             <div class="form-group col-sm-12">
                                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route('roles.index') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ route('role.index') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
 

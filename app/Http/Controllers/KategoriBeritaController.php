@@ -12,7 +12,7 @@ class KategoriBeritaController extends Controller
     }
 
     public function index(){
-        $data_kategori = KategoriBerita::simplePaginate(10);
+        $data_kategori = KategoriBerita::simplePaginate(5);
         return view('kategori.index', compact('data_kategori'));
     }
 

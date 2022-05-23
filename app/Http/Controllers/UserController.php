@@ -29,8 +29,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','ASC')->paginate(5);
-        return view('users.index',compact('data'))
+        $data = User::orderBy('id','ASC')->simplePaginate(5);
+        return view('user.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('users.create',compact('roles'));
+        return view('user.create',compact('roles'));
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
 
         Flash::success('User saved successfully.');
 
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -87,7 +87,7 @@ class UserController extends Controller
             return redirect(route('users.index'));
         }
 
-        return view('users.show',compact('user'));
+        return view('user.show',compact('user'));
     }
 
     /**
@@ -105,10 +105,10 @@ class UserController extends Controller
         if (empty($user)) {
             Flash::error('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(route('user.index'));
         }
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('user.edit',compact('user','roles','userRole'));
     }
 
     /**
@@ -143,12 +143,12 @@ class UserController extends Controller
         if (empty($user)) {
             Flash::error('User not found');
 
-            return redirect(route('users.index'));
+            return redirect(route('user.index'));
         }
 
         Flash::success('User updated successfully.');
 
-        return redirect()->route('users.index')
+        return redirect()->route('user.index')
                         ->with('success','User updated successfully');
     }
 
@@ -164,6 +164,6 @@ class UserController extends Controller
 
         Flash::success('User deleted successfully.');
 
-        return redirect()->route('users.index');
+        return redirect()->route('user.index');
     }
 }

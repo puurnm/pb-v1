@@ -1,55 +1,66 @@
 @extends('layouts.admin')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb my-0 ms-2">
+        <li class="breadcrumb-item">
+            <a href="{{ route('dashboard') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item active">
+            <a>Kategori</a>
+        </li>
+    </ol>
+</nav>
+@endsection
+
 @section('content')
-    <div class="container">
-        <h2>Data Kategori Produk</h2>
-
-        @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <p>{{ \session::get('success')}}</p>
-        </div>
-        @endif
-
+<div class="container-fluid">
+    <div class="animated fadeIn">
+        @include('flash::message')
         <div class="row">
-            <div class="col-sm">
-                <a href="{{ route('kategori.create') }}" class="btn btn-primary">
-                    Tambah Data
-                </a>
-            </div>
-            <div class="col-sm">
-                <a href="#">Kategori</a>
-            </div>
-            <div class="col-sm">
-                {{ $data_kategori->links() }}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i>
+                        Kategori
+                        <a class="float-right" href="{{ route('kategori.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped" id="kategori-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kategori</th>
+                                        <th colspan="3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data_kategori as $kategori)
+                                        <tr>
+                                            <td>{{ $kategori->id_kategori }}</td>
+                                            <td>{{ $kategori->nama_kategori }}</td>
+                                            <td>
+                                                {!! Form::open(['route' => ['kategori.destroy', $kategori->id_kategori], 'method' => 'delete']) !!}
+                                                <div class='btn-group'>
+                                                    <a href="{{ route('kategori.show', [$kategori->id_kategori]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                                                    <a href="{{ route('kategori.edit', [$kategori->id_kategori]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                </div>
+                                                {!! Form::close() !!}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            {!! $data_kategori->render() !!}
+                        </div>
+                        <div class="pull-right mr-3">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <br>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID kategori</th>
-                    <th>Nama kategori</th>
-                    <th colspan="2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($data_kategori as $kategori)
-                <tr>
-                    <td>{{$kategori['id_kategori']}}</td>
-                    <td>{{$kategori['nama_kategori']}}</td>
-                    <td>
-                        <a href ="{{ route('kategori.edit', $kategori['id_kategori'])}}" class="btn btn-warning">Edit</a>
-                    </td>
-                    <td>
-                        <form action="#" method="post">
-                            {{csrf_field() }}
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
     </div>
+</div>
 @endsection

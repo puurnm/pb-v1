@@ -38,9 +38,9 @@ Route::get('/contact-us', function () {
 Route::prefix('admin')->group(function () {
     Auth::routes();
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('product', ProductController::class);
     Route::resource('kategori', KategoriBeritaController::class);
     Route::resource('berita', BeritaController::class);
 });

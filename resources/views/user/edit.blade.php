@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Home</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('users.index') }}">Users</a>
+            <a href="{{ route('user.index') }}">Users</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Edit</a>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="card-body">
-                        {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'patch']) !!}
+                        {!! Form::model($user, ['route' => ['user.update', $user->id], 'method' => 'patch']) !!}
 
                         <!-- Nama Field -->
                         <div class="form-group col-sm-6">
@@ -51,7 +51,7 @@
                         <!-- Submit Field -->
                         <div class="form-group col-sm-12">
                             {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('user.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
 
                         {!! Form::close() !!}
