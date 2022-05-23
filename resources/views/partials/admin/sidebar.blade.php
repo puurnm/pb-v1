@@ -26,6 +26,11 @@
                 <i class="c-sidebar-nav-icon cib-adguard"></i>Role
             </a>
         </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="{{ route('kategori.index') }}">
+                <i class="c-sidebar-nav-icon cib-adguard"></i>Kategori
+            </a>
+        </li>
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
         </div>
