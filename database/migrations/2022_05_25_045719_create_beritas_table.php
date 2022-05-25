@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeritaTable extends Migration
+class CreateBeritasTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
     public function up()
     {
-        Schema::create('berita', function (Blueprint $table) {
-            $table->increments('id_berita');
+        Schema::create('beritas', function (Blueprint $table) {
+            $table->id('id_berita');
             $table->text('judul');
-            $table->string('isi');
-            $table->string('gambar',225);
+            $table->longText('isi');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateBeritaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berita');
+        Schema::dropIfExists('beritas');
     }
 }

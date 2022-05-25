@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('user.index') }}">User</a>
+            <a href="{{ route('berita.index') }}">Berita</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Detail</a>
@@ -30,30 +30,26 @@
                     <div class="card-body">
                         <!-- Name Field -->
                         <div class="form-group">
-                            {!! Form::label('name', 'Name :') !!}
-                            <p>{{ $user->name }}</p>
+                            {!! Form::label('judul', 'Judul :') !!}
+                            <p>{{ $berita->judul }}</p>
                         </div>
 
                         <!-- Email Field -->
                         <div class="form-group">
-                            {!! Form::label('email', 'Email :') !!}
-                            <p>{{ $user->email }}</p>
+                            {!! Form::label('isi', 'Isi :') !!}
+                            <p>{{ $berita->isi }}</p>
                         </div>
 
                         <!-- Role Field -->
                         <div class="form-group">
-                            {!! Form::label('role', 'Role :') !!}
+                            {!! Form::label('image', 'Gambar :') !!}
                             <p>
-                                @if(!empty($user->getRoleNames()))
-                                    @foreach($user->getRoleNames() as $v)
-                                        <label class="badge badge-success">{{ $v }}</label>
-                                    @endforeach
-                                @endif
+                                <img src="{{ $berita->image }}" width="150px">
                             </p>
                         </div>
 
                         <div>
-                            <a class="float-left" href="{{ route('user.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
+                            <a class="float-left" href="{{ route('berita.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
                         </div>
                     </div>
                 </div>

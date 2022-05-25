@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <a href="{{ route('dashboard') }}">Home</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Kategori</a>

@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('role.index') }}">Role</a>
+            <a href="{{ route('berita.index') }}">Berita</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Edit</a>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="card-body">
-                        {!! Form::model($role, ['route' => ['role.update', $role->id], 'method' => 'patch']) !!}
+                        {!! Form::model($berita, ['route' => ['berita.update', $berita->id_berita], 'method' => 'patch']) !!}
 
                         <!-- Name Field -->
                         <div class="form-group col-sm-6">
@@ -50,7 +50,7 @@
                         <!-- Submit Field -->
                         <div class="form-group col-sm-12">
                             {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                            <a href="{{ route('role.index') }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('berita.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
 
                         {!! Form::close() !!}

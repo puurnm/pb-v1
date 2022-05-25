@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <a href="{{ route('dashboard') }}">Home</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
             <a href="{{ route('berita.index') }}">Berita</a>
@@ -38,35 +38,25 @@
                         <strong>Create New Berita</strong>
                     </div>
                     <div class="card-body">
-                        {!! Form::open(['route' => 'berita.store', 'class' => 'needs-validation']) !!}
-
-                        <!-- Nama Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('judul', 'Judul :') !!}
-                            {!! Form::text('judul', null, ['placeholder' => 'Judul', 'class' => 'form-control', 'required']) !!}
-                        </div>
-
-                        <!-- Email Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('isi', 'Isi :') !!}
-                            {!! Form::text('isi', null, ['placeholder' => 'Isi', 'class' => 'form-control', 'required']) !!}
-                        </div>
-
-                        <!-- Gambar Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('gambar', 'Gambar :') !!}
-                            {!! Form::file('gambar', null, ['placeholder' => 'Gambar', 'class' => 'form-control', 'required']) !!}
-                        </div>
-
-                        <div class="card-footer">
-                            <!-- Submit Field -->
-                            <div class="form-group col-sm-12">
-                                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                                <a href="{{ route('berita.index') }}" class="btn btn-secondary">Cancel</a>
+                        <form class="needs-validation" action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group col-sm-6">
+                                <label for="judul">Judul :</label>
+                                <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul">
                             </div>
-                        </div>
-
-                          {!! Form::close() !!}
+                            <div class="form-group col-sm-6">
+                                <label for="isi">Isi :</label>
+                                <input type="text" class="form-control" id="isi" name="isi" placeholder="Isi">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="image">Gambar :</label>
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <a href="{{ route('role.index') }}" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

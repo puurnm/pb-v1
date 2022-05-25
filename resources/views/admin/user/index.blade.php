@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb my-0 ms-2">
         <li class="breadcrumb-item">
-            <a href="{{ route('dashboard') }}">Home</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item active">
             <a>User</a>
@@ -14,12 +14,6 @@
 @endsection
 
 @section('content')
-@if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-@endif
-
 <div class="container-fluid">
     <div class="animated fadeIn">
         @include('flash::message')
