@@ -14,6 +14,12 @@
 @endsection
 
 @section('content')
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         @include('flash::message')
@@ -45,17 +51,21 @@
                                             <td>{{ $user->email }}</td>
                                             <td>
                                                 @if(!empty($user->getRoleNames()))
-                                                @foreach($user->getRoleNames() as $v)
-                                                <label class="badge badge-success">{{ $v }}</label>
-                                                @endforeach
+                                                    @foreach($user->getRoleNames() as $v)
+                                                        <label class="badge badge-success">{{ $v }}</label>
+                                                    @endforeach
                                                 @endif
                                             </td>
                                             <td>
                                                 {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
                                                     <a href="{{ route('user.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('user.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                    @can('role-edit')
+                                                        <a href="{{ route('user.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('role-delete')
+                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                    @endcan
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

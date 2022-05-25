@@ -44,6 +44,6 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->flush();
         $request->session()->regenerate();
-        return redirect('/welcome');
+        return redirect()->route('login');
     }
 }

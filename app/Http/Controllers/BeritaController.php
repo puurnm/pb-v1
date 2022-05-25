@@ -57,7 +57,7 @@ class BeritaController extends Controller
 
         Berita::create($request->all());
 
-        return redirect()->route('admin.berita.index')
+        return redirect()->route('berita.index')
                         ->with('success','Product created successfully.');
     }
 }

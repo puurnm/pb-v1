@@ -21,16 +21,20 @@
                 <i class="c-sidebar-nav-icon cil-library"></i>Kategori
             </a>
         </li>
-        <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('user.index') }}">
-                <i class="c-sidebar-nav-icon cil-user"></i>User
-            </a>
-        </li>
-        <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('role.index') }}">
-                <i class="c-sidebar-nav-icon cib-adguard"></i>Role
-            </a>
-        </li>
+        @can('role-list')
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ route('user.index') }}">
+                    <i class="c-sidebar-nav-icon cil-user"></i>User
+                </a>
+            </li>
+        @endcan
+        @can('role-list')
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ route('role.index') }}">
+                    <i class="c-sidebar-nav-icon cib-adguard"></i>Role
+                </a>
+            </li>
+        @endcan
         <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
             <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
         </div>

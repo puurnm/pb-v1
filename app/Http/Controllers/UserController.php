@@ -66,9 +66,8 @@ class UserController extends Controller
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        Flash::success('User saved successfully.');
-
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')
+                        ->with('success','User created successfully');
     }
 
     /**
@@ -80,13 +79,6 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
-        if (empty($user)) {
-            Flash::error('User not found');
-
-            return redirect(route('users.index'));
-        }
-
         return view('admin.user.show',compact('user'));
     }
 
@@ -101,12 +93,6 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
-
-        if (empty($user)) {
-            Flash::error('User not found');
-
-            return redirect(route('user.index'));
-        }
 
         return view('admin.user.edit',compact('user','roles','userRole'));
     }
@@ -140,14 +126,6 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        if (empty($user)) {
-            Flash::error('User not found');
-
-            return redirect(route('user.index'));
-        }
-
-        Flash::success('User updated successfully.');
-
         return redirect()->route('user.index')
                         ->with('success','User updated successfully');
     }
@@ -161,9 +139,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-
-        Flash::success('User deleted successfully.');
-
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')
+                        ->with('success','User deleted successfully');
     }
 }

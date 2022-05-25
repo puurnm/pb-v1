@@ -17,6 +17,17 @@
 @endsection
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">
@@ -41,10 +52,10 @@
                             {!! Form::text('isi', null, ['placeholder' => 'Isi', 'class' => 'form-control', 'required']) !!}
                         </div>
 
-                        <!-- Password Field -->
+                        <!-- Gambar Field -->
                         <div class="form-group col-sm-6">
-                            <label for="gambar">Gambar :</label>
-                            <input type="file" class="form-control" id="gambar" placeholder="Password" required>
+                            {!! Form::label('gambar', 'Gambar :') !!}
+                            {!! Form::file('gambar', null, ['placeholder' => 'Gambar', 'class' => 'form-control', 'required']) !!}
                         </div>
 
                         <div class="card-footer">

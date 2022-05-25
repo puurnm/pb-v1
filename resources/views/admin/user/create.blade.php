@@ -17,6 +17,17 @@
 @endsection
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">
@@ -29,7 +40,7 @@
                     <div class="card-body">
                         {!! Form::open(['route' => 'user.store', 'class' => 'needs-validation']) !!}
 
-                        <!-- Nama Field -->
+                        <!-- Name Field -->
                         <div class="form-group col-sm-6">
                             {!! Form::label('name', 'Name :') !!}
                             {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control', 'required']) !!}
@@ -43,19 +54,19 @@
 
                         <!-- Password Field -->
                         <div class="form-group col-sm-6">
-                            <label for="password">Password :</label>
-                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            {!! Form::label('password', 'Password :') !!}
+                            {!! Form::text('password', null, ['placeholder' => 'Password', 'class' => 'form-control', 'required']) !!}
                         </div>
 
                         <!-- Confirm Password Field -->
                         <div class="form-group col-sm-6">
-                            <label for="confirm-password">Confirm Password :</label>
-                            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required>
+                            {!! Form::label('confirm-password', 'Confirm Password :') !!}
+                            {!! Form::text('confirm-password', null, ['placeholder' => 'Confirm Password', 'class' => 'form-control', 'required']) !!}
                         </div>
 
                         <!-- Role Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('role', 'Role :') !!}
+                            {!! Form::label('roles[]', 'Role :') !!}
                             {!! Form::select('roles[]', $roles, null, ['placeholder' => 'Select Role', 'class' => 'form-control', 'required']) !!}
                         </div>
 

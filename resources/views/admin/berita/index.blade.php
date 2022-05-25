@@ -12,6 +12,7 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Isi</th>
+                        <th>Gambar</th>
                         <th>Created At</th>
                     </tr>
                 </thead>
@@ -21,6 +22,7 @@
                         <td>{{ ++$i }}</td>
                         <td>{{ $dt->judul }}</td>
                         <td>{{ $dt->isi }}</td>
+                        <td>{{ $dt->gambar }}</td>
                         <td>{{ $dt->created_at }}</td>
                     </th>
                     @endforeach
