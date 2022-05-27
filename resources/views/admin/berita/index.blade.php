@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $berita->judul }}</td>
-                                            <td>{{ $berita->isi }}</td>
+                                            <td>{!!$berita->isi!!}</td>
                                             <td><img src="{{ $berita->image }}" width="150px"></td>
                                             <td>
                                                 {!! Form::open(['route' => ['berita.destroy', $berita->id_berita], 'method' => 'delete']) !!}

@@ -115,6 +115,9 @@
             <div class="card-body">
               <h2>Category</h2>
               <ul class="vertical-menu">
+                  @foreach ($kategori as $e => $kategori)
+                  <li><a href="{{ route('berita.index') }}">{{ $kategori->nama_kategori }}</a></li>
+                  @endforeach
                 <li><a href="#">Politics</a></li>
                 <li><a href="#">International</a></li>
                 <li><a href="#">Finance</a></li>
@@ -134,7 +137,7 @@
         <div class="col-lg-9 stretch-card grid-margin">
           <div class="card">
             <div class="card-body">
-                @foreach ($data as $e => $berita)
+                @foreach ($berita as $e => $berita)
                 <div class="row">
                     <div class="col-sm-4 grid-margin">
                       <div class="position-relative">
@@ -160,7 +163,7 @@
                         <span class="mr-2">Photo </span>10 Minutes ago
                       </div>
                       <p class="mb-0">
-                          {{ $berita->isi }}
+                          {!! $berita->isi !!}
                       </p>
                     </div>
                   </div>

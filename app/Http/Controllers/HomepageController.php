@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\KategoriBerita;
 
 class HomepageController extends Controller
 {
@@ -14,11 +15,11 @@ class HomepageController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
+        $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
+        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->simplePaginate(3);
 
-        
-        return view('homepage.home', compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        return view('homepage.home', compact('berita','kategori'))
+            ->with('i', ($request->input('page', 1) - 1) * 3);
     }
 
     /**

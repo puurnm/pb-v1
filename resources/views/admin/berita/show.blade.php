@@ -51,7 +51,7 @@
                                       <span class="mr-2">Photo </span>10 Minutes ago
                                     </div>
                                     <p class="mb-0">
-                                        {{ $berita->isi }}
+                                        {!! $berita->isi !!}
                                     </p>
                                   </div>
                                 </div>
