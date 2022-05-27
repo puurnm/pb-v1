@@ -3,33 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Berita;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class HomepageController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::select('select * from users')->count();
-        $berita = Berita::select('select * from beritas')->count();
+        $data = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
 
-        return view('admin.dashboard', compact('user','berita'));
+        
+        return view('homepage.home', compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -59,12 +48,9 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $user = User::select('select * from users');
-        $jumlah_user = mysqli_num_rows($user);
 
-        return view('admin.dashboard', compact('jumlah_user'));
     }
 
     /**

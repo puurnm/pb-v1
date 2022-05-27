@@ -18,7 +18,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ __('Dashboard') }}
+                        <strong>{{ __('Dashboard') }}</strong>
                     </div>
                     <div class="card-body">
                         @if (session('status'))
@@ -28,6 +28,24 @@
                         @endif
                         <h2>Welcome Back, {{ Auth::user()->name }} !</h2>
                         {{ __('You are logged in!') }}
+
+                        <div class="card" style="width: 15rem; margin-top: 15px">
+                            <div class="card-header">
+                                Jumlah User Aktif
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $user }}</h5>
+                            </div>
+                        </div>
+
+                        <div class="card" style="width: 15rem; margin-top: -145px; margin-left: 250px">
+                            <div class="card-header">
+                                Jumlah Berita Dibuat
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $berita }}</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

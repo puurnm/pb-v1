@@ -30,9 +30,9 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','ASC')->simplePaginate(5);
+        $roles = Role::orderBy('id','ASC')->simplePaginate(10);
         return view('admin.role.index',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

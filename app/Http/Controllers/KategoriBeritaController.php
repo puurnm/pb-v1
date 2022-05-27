@@ -15,7 +15,7 @@ class KategoriBeritaController extends Controller
     public function index(Request $request){
         $data_kategori = KategoriBerita::simplePaginate(10);
         return view('admin.kategori.index', compact('data_kategori'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     public function create(){

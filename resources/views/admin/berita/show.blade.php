@@ -28,24 +28,35 @@
                     </div>
 
                     <div class="card-body">
-                        <!-- Name Field -->
-                        <div class="form-group">
-                            {!! Form::label('judul', 'Judul :') !!}
-                            <p>{{ $berita->judul }}</p>
-                        </div>
-
-                        <!-- Email Field -->
-                        <div class="form-group">
-                            {!! Form::label('isi', 'Isi :') !!}
-                            <p>{{ $berita->isi }}</p>
-                        </div>
-
-                        <!-- Role Field -->
-                        <div class="form-group">
-                            {!! Form::label('image', 'Gambar :') !!}
-                            <p>
-                                <img src="{{ $berita->image }}" width="150px">
-                            </p>
+                        <div class="col-lg-9 stretch-card grid-margin">
+                            <div class="card">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-sm-4 grid-margin">
+                                    <div class="position-relative">
+                                      <div class="rotate-img">
+                                        <img
+                                          src="{{ $berita->image }}"
+                                          alt="thumb"
+                                          class="img-fluid"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-8  grid-margin">
+                                    <h2 class="mb-2 font-weight-600">
+                                        {{ $berita->judul }}
+                                    </h2>
+                                    <div class="fs-13 mb-2">
+                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                    </div>
+                                    <p class="mb-0">
+                                        {{ $berita->isi }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         </div>
 
                         <div>

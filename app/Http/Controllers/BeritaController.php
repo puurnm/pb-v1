@@ -26,9 +26,9 @@ class BeritaController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Berita::orderBy('id_berita','ASC')->simplePaginate(5);
+        $data = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
         return view('admin.berita.index', compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -84,8 +84,9 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berita $berita)
+    public function edit($beritum)
     {
+        $berita = Berita::query()->where('id_berita', $beritum)->first();
         return view('admin.berita.edit',compact('berita'));
     }
 
@@ -96,7 +97,7 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_berita)
+    public function update(Request $request, $beritum)
     {
         request()->validate([
             'judul' => 'required',
@@ -104,12 +105,14 @@ class BeritaController extends Controller
             'image' => 'required',
         ]);
 
-        $berita = Berita::find($id_berita);
+        $berita = Berita::find($beritum);
         $file   = $request->file('image');
         $result = CloudinaryStorage::replace($berita->image, $file->getRealPath(), $file->getClientOriginalName());
 
-        $berita->update($request->all());
-        $berita['image'] = $result;
+        $data = $request->all();
+        $data['image'] = $result;
+
+        $berita->update($data);
 
         Flash::success('Berita updated successfully.');
 
@@ -124,8 +127,9 @@ class BeritaController extends Controller
      */
     public function destroy($id_berita, Berita $berita)
     {
+        $berita = Berita::where('id_berita',$id_berita)->first();
         CloudinaryStorage::delete($berita->image);
-        Berita::find($id_berita)->delete();
+        $berita->delete();
 
         Flash::success('Berita deleted successfully.');
 

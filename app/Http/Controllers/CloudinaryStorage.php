@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cloudinary;
 
 class CloudinaryStorage extends Controller
 {
-    private const folder_path = 'tutorial';
+    private const folder_path = 'portal-berita-v1';
 
     public static function path($path){
         return pathinfo($path, PATHINFO_FILENAME);
@@ -16,8 +17,8 @@ class CloudinaryStorage extends Controller
         $newFilename = str_replace(' ', '_', $filename);
         $public_id = date('Y-m-d_His').'_'.$newFilename;
         $result = cloudinary()->upload($image, [
-            "public_id" => self::path($public_id),
-            "folder"    => self::folder_path
+            "public_id" => self::path($public_id)
+            // "folder"    => self::folder_path
         ])->getSecurePath();
 
         return $result;
@@ -29,7 +30,8 @@ class CloudinaryStorage extends Controller
     }
 
     public static function delete($path){
-        $public_id = self::folder_path.'/'.self::path($path);
-        return cloudinary()->destroy($public_id);
+        $data = explode("/",$path);
+        $imageID = explode(".",$data[7]);
+        return cloudinary()->destroy($imageID[0]);
     }
 }

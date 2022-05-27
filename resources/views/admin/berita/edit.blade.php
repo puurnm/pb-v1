@@ -28,23 +28,24 @@
                     </div>
 
                     <div class="card-body">
-                        {!! Form::model($berita, ['route' => ['berita.update', $berita->id_berita], 'method' => 'patch']) !!}
+                        {!! Form::model($berita, ['route' => ['berita.update', $berita->id_berita], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
                         <!-- Name Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('name', 'Name :') !!}
-                            {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                            {!! Form::label('judul', 'Name :') !!}
+                            {!! Form::text('judul', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
                         </div>
 
-                        <!-- Permission Field -->
+                        <!-- Name Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('permission', 'Permission :') !!}
-                            <br>
-                            @foreach($permission as $value)
-                                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                                {{ $value->name }}</label>
-                                <br/>
-                            @endforeach
+                            {!! Form::label('isi', 'Name :') !!}
+                            {!! Form::text('isi', null, ['placeholder' => 'Name', 'class' => 'form-control', 'id' => 'summernote']) !!}
+                        </div>
+
+                        <!-- Name Field -->
+                        <div class="form-group col-sm-6">
+                            {!! Form::label('image', 'Name :') !!}
+                            {!! Form::file('image', ['placeholder' => 'Name', 'class' => 'form-control']) !!}
                         </div>
 
                         <!-- Submit Field -->
