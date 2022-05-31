@@ -32,8 +32,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Judul</th>
-                                        <th style="width:500px">Isi</th>
-                                        <th>Gambar</th>
+                                        <th>Kategori</th>
+                                        <th>Penulis</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
@@ -42,8 +42,8 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $berita->judul }}</td>
-                                            <td>{!!$berita->isi!!}</td>
-                                            <td><img src="{{ $berita->image }}" width="150px"></td>
+                                            <td></td>
+                                            <td>{{ $berita->penulis }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['berita.destroy', $berita->id_berita], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>

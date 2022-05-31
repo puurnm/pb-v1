@@ -17,6 +17,17 @@
 @endsection
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">
@@ -30,22 +41,22 @@
                     <div class="card-body">
                         {!! Form::model($berita, ['route' => ['berita.update', $berita->id_berita], 'method' => 'patch', 'enctype' => 'multipart/form-data']) !!}
 
-                        <!-- Name Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('judul', 'Name :') !!}
-                            {!! Form::text('judul', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                        <!-- Judul Field -->
+                        <div class="form-group col-sm-10">
+                            {!! Form::label('judul', 'Judul :') !!}
+                            {!! Form::text('judul', null, ['placeholder' => 'Judul', 'class' => 'form-control']) !!}
                         </div>
 
-                        <!-- Name Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('isi', 'Name :') !!}
-                            {!! Form::text('isi', null, ['placeholder' => 'Name', 'class' => 'form-control', 'id' => 'summernote']) !!}
+                        <!-- Isi Field -->
+                        <div class="form-group col-sm-10">
+                            {!! Form::label('isi', 'Isi :') !!}
+                            {!! Form::textarea('isi', null, ['placeholder' => 'Isi', 'class' => 'form-control']) !!}
                         </div>
 
-                        <!-- Name Field -->
-                        <div class="form-group col-sm-6">
-                            {!! Form::label('image', 'Name :') !!}
-                            {!! Form::file('image', ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                        <!-- Gambar Field -->
+                        <div class="form-group col-sm-10">
+                            {!! Form::label('image', 'Gambar :') !!}
+                            {!! Form::file('image', ['placeholder' => 'Gambar', 'class' => 'form-control-file']) !!}
                         </div>
 
                         <!-- Submit Field -->

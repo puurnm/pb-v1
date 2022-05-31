@@ -40,11 +40,11 @@
                     <div class="card-body">
                         <form class="needs-validation" action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 <label for="judul">Judul :</label>
                                 <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul">
                             </div>
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 <label for="isi">Isi :</label>
                                 <textarea class="form-control" name="isi" id="summernote" rows="10" placeholder="Isi"></textarea>
                             </div>
@@ -52,10 +52,14 @@
                                 <label for="image">Gambar :</label>
                                 <input type="file" class="form-control-file" id="image" name="image">
                             </div>
+                            <div class="form-group col-sm-10">
+                                <label for="penulis">Penulis :</label>
+                                <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Penulis">
+                            </div>
                             <div class="card-footer">
                                 <div class="form-group col-sm-12">
                                     <button type="submit" class="btn btn-primary">Save</button>
-                                    <a href="{{ route('role.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('berita.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
                         </form>

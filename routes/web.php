@@ -25,10 +25,7 @@ Route::get('/welcome', function () {
 // Route Homepage
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\HomepageController::class, 'index'])->name('home');
-
-Route::get('/berita', function () {
-    return view('homepage.berita');
-})->name('berita');
+Route::get('/berita', [App\Http\Controllers\HomepageController::class, 'berita'])->name('berita');
 Route::get('/contact-us', function () {
     return view('homepage.contactus');
 })->name('contact');

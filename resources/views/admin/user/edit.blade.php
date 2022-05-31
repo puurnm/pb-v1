@@ -17,6 +17,17 @@
 @endsection
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">

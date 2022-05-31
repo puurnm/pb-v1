@@ -14,9 +14,10 @@
 
 <!-- Summernote -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<script type="text/javascript">
     $('#summernote').summernote({
         tabsize: 2,
-        height: 100
+        height: 200
     });
 </script>

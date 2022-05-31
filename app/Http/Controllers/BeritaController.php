@@ -51,6 +51,7 @@ class BeritaController extends Controller
     {
         request()->validate([
             'judul' => 'required',
+            'penulis' => 'required',
             'isi' => 'required',
             'image' => 'required'
         ]);

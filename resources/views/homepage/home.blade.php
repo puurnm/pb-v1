@@ -52,9 +52,25 @@
             <div class="card-body">
               <h2>Latest news</h2>
 
-              <div
-                class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
-              >
+              @foreach ($latest as $data => $latest)
+              <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
+                <div class="pr-3">
+                  <h5>{{ $latest->judul }}</h5>
+                  <div class="fs-12">
+                    <span class="mr-2">Photo </span>10 Minutes ago
+                  </div>
+                </div>
+                <div class="rotate-img">
+                  <img
+                    src="{{ $latest->image }}"
+                    alt="thumb"
+                    style="width: 75px"
+                    class="img-fluid img-lg"
+                  />
+                </div>
+              </div>
+              @endforeach
+              <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
                 <div class="pr-3">
                   <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
                   <div class="fs-12">

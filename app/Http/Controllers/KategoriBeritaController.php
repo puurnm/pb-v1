@@ -39,17 +39,9 @@ class KategoriBeritaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_kategori)
+    public function show()
     {
-        $kategori = KategoriBerita::find($id_kategori);
-
-        if (empty($kategori)) {
-            Flash::error('Kategori not found');
-
-            return redirect(route('kategori.index'));
-        }
-
-        return view('admin.kategori.show',compact('kategori'));
+        //
     }
 
     /**
