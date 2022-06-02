@@ -22,6 +22,9 @@
             <a class="dropdown-item" href="{{ route('profile.index') }}">
                 <i class="c-icon mfe-2 cil-user"></i>Profile
             </a>
+            <a class="dropdown-item" href="{{ route('password') }}">
+                <i class="c-icon mfe-2 cil-lock-locked"></i>Change Password
+            </a>
             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="c-icon mfe-2 cil-account-logout"></i>Logout
             </a>

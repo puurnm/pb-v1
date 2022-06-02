@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\MatchOldPassword;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Laracasts\Flash\Flash;
 
 class ProfileController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +32,16 @@ class ProfileController extends Controller
         return view('admin.profile.show', [
             'user' => $request->user()
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function password()
+    {
+        return view('admin.profile.password');
     }
 
     /**
@@ -39,7 +62,17 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'current_password' => ['required', new MatchOldPassword],
+            'new_password' => ['required', 'string', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/'],
+            'new_confirm_password' => ['same:new_password'],
+        ]);
+
+        User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+        Flash::success('Password changed successfully.');
+
+        return redirect()->route('dashboard');
     }
 
     /**

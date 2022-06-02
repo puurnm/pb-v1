@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function () {
     Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('change-password', [App\Http\Controllers\ProfileController::class, 'password'])->name('password');
+    Route::post('change-password', [App\Http\Controllers\ProfileController::class, 'store'])->name('password.store');
 });
 
 Route::redirect('/admin', '/admin/login');

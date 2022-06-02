@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('user.index') }}">Users</a>
+            <a href="{{ route('profile.index') }}">Profile</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Edit</a>
@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-edit fa-lg"></i>
-                        <strong>Edit User</strong>
+                        <strong>Edit Profile</strong>
                     </div>
 
                     <div class="card-body">

@@ -22,7 +22,7 @@
                     <div class="card-header">
                         <i class="c-icon mfe-2 cil-user"></i>
                         <strong>Profile</strong>
-                        <a class="float-right" href="{{ route('profile.edit') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        <a class="float-right" href="{{ route('profile.edit') }}"><i class="fa fa-edit fa-lg"></i></a>
                     </div>
 
                     <div class="card-body">
