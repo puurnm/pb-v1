@@ -39,6 +39,9 @@ Route::prefix('admin')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('kategori', KategoriBeritaController::class);
     Route::resource('berita', BeritaController::class);
+    Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
+    Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::redirect('/admin', '/admin/login');
