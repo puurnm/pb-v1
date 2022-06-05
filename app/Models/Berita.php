@@ -12,4 +12,8 @@ class Berita extends Model
     protected $table = 'beritas';
     protected $primaryKey ='id_berita';
     protected $guarded = [];
+
+    public function kategori() {
+        return $this->belongsTo('App\Models\KategoriBerita', 'id_kategori');
+    }
 }

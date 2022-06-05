@@ -15,10 +15,12 @@ class CreateBeritasTable extends Migration
     {
         Schema::create('beritas', function (Blueprint $table) {
             $table->id('id_berita');
+            $table->integer('id_kategori')->unsigned();
             $table->text('judul');
             $table->string('penulis');
             $table->longText('isi');
             $table->string('image');
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategori_berita');
             $table->timestamps();
         });
     }

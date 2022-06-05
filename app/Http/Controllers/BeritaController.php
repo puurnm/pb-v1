@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CloudinaryStorage;
+use App\Models\KategoriBerita;
 use Laracasts\Flash\Flash;
 
 class BeritaController extends Controller
@@ -38,7 +39,8 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.berita.create');
+        $kategori = KategoriBerita::orderBy('nama_kategori', 'asc')->get();
+        return view('admin.berita.create', compact('kategori'));
     }
 
     /**
@@ -53,7 +55,8 @@ class BeritaController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'isi' => 'required',
-            'image' => 'required'
+            'image' => 'required',
+            'id_kategori' => 'required'
         ]);
 
         $image = $request->file('image');
@@ -88,7 +91,9 @@ class BeritaController extends Controller
     public function edit($beritum)
     {
         $berita = Berita::query()->where('id_berita', $beritum)->first();
-        return view('admin.berita.edit',compact('berita'));
+        $kategori = KategoriBerita::orderBy('nama_kategori', 'asc')->get();
+
+        return view('admin.berita.edit',compact('berita', 'kategori'));
     }
 
     /**
@@ -103,7 +108,8 @@ class BeritaController extends Controller
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'image' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'id_kategori' => 'required'
         ]);
 
         $berita = Berita::find($beritum);

@@ -21,6 +21,16 @@
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger col-lg-12" role="alert">
+                        <h4 class="alert-heading">Whoops!</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-plus-square fa-lg"></i>

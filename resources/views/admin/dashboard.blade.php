@@ -31,7 +31,7 @@
 
                         <div class="card" style="width: 15rem; margin-top: 15px">
                             <div class="card-header">
-                                Jumlah User Aktif
+                                Jumlah User Terdaftar
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{ $user }}</h5>
