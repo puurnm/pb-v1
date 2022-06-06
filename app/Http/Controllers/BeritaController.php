@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\CloudinaryStorage;
 use App\Models\KategoriBerita;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\DB;
 
 class BeritaController extends Controller
 {
@@ -27,7 +28,9 @@ class BeritaController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
+        $data = DB::table('beritas')->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+        ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis')
+        ->simplePaginate(10);
         return view('admin.berita.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }

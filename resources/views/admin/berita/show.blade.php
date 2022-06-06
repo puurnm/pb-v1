@@ -38,7 +38,7 @@
                                         <img
                                           src="{{ $berita->image }}"
                                           alt="thumb"
-                                          class="img-fluid"
+                                          class="img-thumbnail"
                                         />
                                       </div>
                                     </div>

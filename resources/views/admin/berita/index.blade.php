@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $berita->judul }}</td>
-                                            <td></td>
+                                            <td>{{ $berita->nama_kategori }}</td>
                                             <td>{{ $berita->penulis }}</td>
                                             <td>
                                                 {!! Form::open(['route' => ['berita.destroy', $berita->id_berita], 'method' => 'delete']) !!}
