@@ -18,7 +18,7 @@ class HomepageController extends Controller
     {
         $latest = Berita::orderBy('id_berita','DESC')->simplePaginate(3);
         $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
-        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->simplePaginate(3);
+        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
 
         Str::substr($berita, 0, 50);
 
@@ -39,6 +39,19 @@ class HomepageController extends Controller
         return view('homepage.berita', compact('berita'))
             ->with('i', ($request->input('page', 1) - 1) * 3);
     }
+
+    public function beritaShow(Berita $id_berita)
+    {
+        $berita = Berita::findOrFail($id_berita);
+        return view('homepage.berita-show',compact('berita'));
+    }
+
+    public function kategoriShow(KategoriBerita $id)
+    {
+        $berita = Berita::query()->where('id_kategori', $id)->first();
+        return view('homepage.kategori-show',compact('berita'));
+    }
+
     public function create()
     {
         //

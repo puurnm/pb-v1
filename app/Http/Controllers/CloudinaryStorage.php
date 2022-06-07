@@ -25,7 +25,10 @@ class CloudinaryStorage extends Controller
     }
 
     public static function replace($path, $image, $public_id){
-        self::delete($path);
+        $data = explode("/",$path);
+        $imageID = explode(".",$data[7]);
+        cloudinary()->destroy($imageID[0]);
+
         return self::upload($image, $public_id);
     }
 

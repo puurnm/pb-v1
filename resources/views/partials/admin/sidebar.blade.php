@@ -1,6 +1,6 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-md-down-none">
-        <img src="{{ asset('images/logo.png') }}" width="75"
+        <img src="{{ asset('images/logo.png') }}" width="100"
              class="c-sidebar-brand-full" alt="Brand Logo">
         <img src="{{ asset('images/favicon.png') }}" width="46" height="46"
              class="c-sidebar-brand-minimized" alt="Brand Logo">

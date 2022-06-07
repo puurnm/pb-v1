@@ -38,15 +38,16 @@
                     </div>
 
                     <div class="card-body">
-                        <form class="needs-validation" action="{{ route('berita.store', $berita->id_berita) }}" method="PATCH" enctype="multipart/form-data">
+                        <form class="needs-validation" action="{{ route('news.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-10">
                                 <label for="judul">Judul :</label>
+                                <input type="hidden" id="id" name="id" value="{{ $berita->id_berita }}">
                                 <input type="text" class="form-control" id="judul" name="judul" value="{{ $berita->judul }}" placeholder="Judul">
                             </div>
                             <div class="form-group col-sm-10">
                                 <label for="isi">Isi :</label>
-                                <textarea class="form-control" name="isi" id="summernote" rows="10" value="{{ $berita->isi }}" placeholder="Isi"></textarea>
+                                <textarea class="form-control" name="isi" id="summernote" rows="10" value="{{ $berita->isi }}" placeholder="Isi">{{ $berita->isi }}</textarea>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="image">Gambar :</label>

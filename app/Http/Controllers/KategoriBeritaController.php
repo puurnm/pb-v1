@@ -13,7 +13,7 @@ class KategoriBeritaController extends Controller
     }
 
     public function index(Request $request){
-        $data_kategori = KategoriBerita::simplePaginate(10);
+        $data_kategori = KategoriBerita::orderBy('id_kategori','ASC')->simplePaginate(10);
         return view('admin.kategori.index', compact('data_kategori'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
@@ -70,8 +70,9 @@ class KategoriBeritaController extends Controller
 
         $kategori->update($request->all());
 
-        return redirect()->route('kategori.index')
-                        ->with('success','Kategori updated successfully');
+        Flash::success('Kategori updated successfully.');
+
+        return redirect()->route('kategori.index');
     }
 
     /**

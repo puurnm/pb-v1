@@ -26,6 +26,8 @@ Route::get('/welcome', function () {
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\HomepageController::class, 'index'])->name('home');
 Route::get('/berita', [App\Http\Controllers\HomepageController::class, 'berita'])->name('berita');
+Route::get('/berita/{judul}', [App\Http\Controllers\HomepageController::class, 'beritaShow'])->name('beritaShow');
+Route::get('/kategori', [App\Http\Controllers\HomepageController::class, 'kategoriShow'])->name('kategoriShow');
 Route::get('/contact-us', function () {
     return view('homepage.contactus');
 })->name('contact');
@@ -39,6 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('product', ProductController::class);
     Route::resource('kategori', KategoriBeritaController::class);
     Route::resource('berita', BeritaController::class);
+    Route::post('change-berita', [App\Http\Controllers\BeritaController::class, 'updateNews'])->name('news.updat');;
     Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');

@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group col-sm-10">
                                 <label for="penulis">Penulis :</label>
-                                <input type="text" class="form-control" id="penulis" name="penulis" value="{{ Auth::user()->name }}" placeholder="Penulis">
+                                <input type="text" class="form-control" id="penulis" name="penulis" value="{{ Auth::user()->name }}" placeholder="Penulis" readonly>
                             </div>
                             <div class="card-footer">
                                 <div class="form-group col-sm-12">

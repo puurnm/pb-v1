@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
 use Illuminate\Http\Request;
-use App\Http\Controllers\CloudinaryStorage;
-use App\Models\KategoriBerita;
-use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\DB;
+use App\Models\KategoriBerita;
+use App\Models\Berita;
+use Laracasts\Flash\Flash;
 
 class BeritaController extends Controller
 {
@@ -28,9 +27,10 @@ class BeritaController extends Controller
      */
     public function index(Request $request)
     {
-        $data = DB::table('beritas')->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-        ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis')
-        ->simplePaginate(10);
+        $data = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis')
+            ->orderBy('id_berita','ASC')->simplePaginate(10);
         return view('admin.berita.index', compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
@@ -76,24 +76,24 @@ class BeritaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Berita  $berita
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_berita)
+    public function show($id)
     {
-        $berita = Berita::find($id_berita);
+        $berita = Berita::findOrFail($id);
         return view('admin.berita.show',compact('berita'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Berita  $berita
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($beritum)
+    public function edit($id)
     {
-        $berita = Berita::query()->where('id_berita', $beritum)->first();
+        $berita = Berita::query()->where('id_berita',$id)->first();
         $kategori = KategoriBerita::orderBy('nama_kategori', 'asc')->get();
 
         return view('admin.berita.edit',compact('berita', 'kategori'));
@@ -103,10 +103,10 @@ class BeritaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Berita  $berita
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $beritum)
+    public function update(Request $request, Berita $beritum)
     {
         request()->validate([
             'judul' => 'required',
@@ -115,14 +115,17 @@ class BeritaController extends Controller
             'id_kategori' => 'required'
         ]);
 
-        $berita = Berita::find($beritum);
+        $berita = Berita::findOrFail($beritum);
         $file   = $request->file('image');
         $result = CloudinaryStorage::replace($berita->image, $file->getRealPath(), $file->getClientOriginalName());
 
         $data = $request->all();
         $data['image'] = $result;
 
-        $berita->update($data);
+        $berita->judul = $data['judul'];
+        $berita->isi = $data['isi'];
+        $berita->id_kategori = $data['id_kategori'];
+        $berita->save();
 
         Flash::success('Berita updated successfully.');
 
@@ -132,16 +135,43 @@ class BeritaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Berita  $berita
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_berita, Berita $berita)
+    public function destroy($beritum)
     {
-        $berita = Berita::where('id_berita',$id_berita)->first();
+        $berita = Berita::where('id_berita',$beritum)->first();
         CloudinaryStorage::delete($berita->image);
         $berita->delete();
 
         Flash::success('Berita deleted successfully.');
+
+        return redirect()->route('berita.index');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateNews(Request $request)
+    {
+        $data = $request->all();
+        $berita = Berita::findOrFail($data['id']);
+        $file   = $request->file('image');
+        $result = CloudinaryStorage::replace($berita->image, $file->getRealPath(), $file->getClientOriginalName());
+
+
+
+        $berita->judul = $data['judul'];
+        $berita->isi = $data['isi'];
+        $berita->id_kategori = $data['id_kategori'];
+        $berita->image = $result;
+        $berita->save();
+
+        Flash::success('Berita updated successfully.');
 
         return redirect()->route('berita.index');
     }
