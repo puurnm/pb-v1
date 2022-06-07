@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('berita.index') }}">Berita</a>
+            <a href="{{ route('news.index') }}">Berita</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Edit</a>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form class="needs-validation" action="{{ route('news.update') }}" method="POST" enctype="multipart/form-data">
+                        <form class="needs-validation" action="{{ route('news.change') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group col-sm-10">
                                 <label for="judul">Judul :</label>
@@ -65,7 +65,7 @@
                             <div class="card-footer">
                                 <div class="form-group col-sm-12">
                                     <button type="submit" class="btn btn-primary">Save</button>
-                                    <a href="{{ route('berita.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('news.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </div>
                         </form>

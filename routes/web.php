@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\Homepage\BeritaController as HomepageBeritaController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -24,9 +25,8 @@ Route::get('/welcome', function () {
 
 // Route Homepage
 Route::redirect('/', '/home');
-Route::get('/home', [App\Http\Controllers\HomepageController::class, 'index'])->name('home');
-Route::get('/berita', [App\Http\Controllers\HomepageController::class, 'berita'])->name('berita');
-Route::get('/berita/{judul}', [App\Http\Controllers\HomepageController::class, 'beritaShow'])->name('beritaShow');
+Route::get('/home', [App\Http\Controllers\Homepage\HomeController::class, 'index'])->name('home');
+Route::resource('berita', HomepageBeritaController::class);
 Route::get('/kategori', [App\Http\Controllers\HomepageController::class, 'kategoriShow'])->name('kategoriShow');
 Route::get('/contact-us', function () {
     return view('homepage.contactus');
@@ -40,8 +40,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
     Route::resource('kategori', KategoriBeritaController::class);
-    Route::resource('berita', BeritaController::class);
-    Route::post('change-berita', [App\Http\Controllers\BeritaController::class, 'updateNews'])->name('news.update');;
+    Route::resource('news', BeritaController::class);
+    Route::post('change-news', [App\Http\Controllers\BeritaController::class, 'updateNews'])->name('news.change');;
     Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');

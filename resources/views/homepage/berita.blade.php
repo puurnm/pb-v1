@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-8 grid-margin">
                       <h2 class="font-weight-600 mb-2">
-                        <a href="{{ route('beritaShow', [$berita->id_berita]) }}">{{ $berita->judul }}</a>
+                        <a href="{{ route('berita.show', [$berita->id_berita]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <p class="fs-13 text-muted mb-0">
                         <span class="mr-2">Photo </span>10 Minutes ago

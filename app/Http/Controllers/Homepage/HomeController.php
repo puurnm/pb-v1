@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Homepage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Berita;
+use App\Models\KategoriBerita;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -12,9 +15,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $latest = Berita::orderBy('id_berita','DESC')->simplePaginate(3);
+        $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
+        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
+
+        Str::substr($berita, 0, 50);
+
+        return view('homepage.home', compact('latest','berita','kategori'))
+            ->with('i', ($request->input('page', 1) - 1) * 3);
     }
 
     /**

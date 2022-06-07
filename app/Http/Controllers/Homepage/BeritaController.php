@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Homepage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Berita;
 
 class BeritaController extends Controller
 {
@@ -12,9 +13,12 @@ class BeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
+
+        return view('homepage.berita', compact('berita'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -46,7 +50,8 @@ class BeritaController extends Controller
      */
     public function show($id)
     {
-        //
+        $berita = Berita::findOrFail($id);
+        return view('homepage.berita-show',compact('berita'));
     }
 
     /**

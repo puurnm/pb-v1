@@ -15,7 +15,7 @@
 
         <li class="c-sidebar-nav-title">Berita</li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('berita.index') }}">
+            <a class="c-sidebar-nav-link" href="{{ route('news.index') }}">
                 <i class="c-sidebar-nav-icon cil-newspaper"></i>Berita
             </a>
         </li>

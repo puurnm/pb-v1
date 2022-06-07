@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('berita.index') }}">Berita</a>
+            <a href="{{ route('news.index') }}">Berita</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Detail</a>
@@ -60,7 +60,7 @@
                         </div>
 
                         <div>
-                            <a class="float-left" href="{{ route('berita.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
+                            <a class="float-left" href="{{ route('news.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
                         </div>
                     </div>
                 </div>

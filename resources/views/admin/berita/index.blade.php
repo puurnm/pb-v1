@@ -23,7 +23,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         Berita
-                        <a class="float-right" href="{{ route('berita.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        <a class="float-right" href="{{ route('news.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -45,10 +45,10 @@
                                             <td>{{ $berita->nama_kategori }}</td>
                                             <td>{{ $berita->penulis }}</td>
                                             <td>
-                                                {!! Form::open(['route' => ['berita.destroy', $berita->id_berita], 'method' => 'delete']) !!}
+                                                {!! Form::open(['route' => ['news.destroy', $berita->id_berita], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{{ route('berita.show', [$berita->id_berita]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('berita.edit', [$berita->id_berita]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('news.show', [$berita->id_berita]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
+                                                    <a href="{{ route('news.edit', [$berita->id_berita]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                                 </div>
                                                 {!! Form::close() !!}

@@ -70,7 +70,7 @@ class BeritaController extends Controller
 
         Flash::success('Berita created successfully.');
 
-        return redirect()->route('berita.index');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -129,7 +129,7 @@ class BeritaController extends Controller
 
         Flash::success('Berita updated successfully.');
 
-        return redirect()->route('berita.index');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -146,7 +146,7 @@ class BeritaController extends Controller
 
         Flash::success('Berita deleted successfully.');
 
-        return redirect()->route('berita.index');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -173,6 +173,6 @@ class BeritaController extends Controller
 
         Flash::success('Berita updated successfully.');
 
-        return redirect()->route('berita.index');
+        return redirect()->route('news.index');
     }
 }

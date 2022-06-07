@@ -161,10 +161,10 @@
                     </div>
                     <div class="col-sm-8  grid-margin">
                       <h2 class="mb-2 font-weight-600">
-                          {{ $berita->judul }}
+                        <a href="{{ route('berita.show', [$berita->id_berita]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <div class="fs-13 mb-2">
-                        <span class="mr-2">Photo </span>10 Minutes ago
+                        <span class="mr-2">Photo </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
                       </div>
                       <p class="mb-0">
                           {!! $berita->isi !!}
