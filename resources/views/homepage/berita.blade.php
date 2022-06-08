@@ -36,7 +36,7 @@
             </div>
             <div class="row">
               <div class="col-lg-8">
-                  @foreach ($berita as $e => $berita)
+                  @foreach ($beritas as $e => $berita)
                   <div class="row">
                     <div class="col-sm-4 grid-margin">
                       <div class="rotate-img">
@@ -49,167 +49,23 @@
                     </div>
                     <div class="col-sm-8 grid-margin">
                       <h2 class="font-weight-600 mb-2">
-                        <a href="{{ route('berita.show', [$berita->id_berita]) }}">{{ $berita->judul }}</a>
+                        <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <p class="fs-13 text-muted mb-0">
                         <span class="mr-2">Photo </span>10 Minutes ago
                       </p>
                       <p class="fs-15">
-                        {!! $berita->isi !!}
+                        <strong>{{ $berita->penulis }}</strong> - {{ substr(strip_tags($berita->isi), 0, 200) }}
+                        @if (strlen(strip_tags($berita->isi)) > 200)
+                          ... <a href="{{ route('berita.show', [$berita->slug]) }}" class="btn btn-info btn-sm">Read More</a>
+                        @endif
                       </p>
                     </div>
                   </div>
                   @endforeach
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_7.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
+                  <div class="text-center">
+                    {!! $beritas->render() !!}
                   </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      No charges over 2017 battle bus cases
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_8.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      No charges over 2017 battle bus cases
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_9.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      Kaine: Trump Jr. may have committed treason
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_10.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      South Korea’s Moon Jae-in sworn in vowing to address
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_11.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      No charges over 2017 battle bus cases
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 grid-margin">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_12.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-8 grid-margin">
-                    <h2 class="font-weight-600 mb-2">
-                      Kaine: Trump Jr. may have committed treason
-                    </h2>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                    <p class="fs-15">
-                      Lorem Ipsum has been the industry's standard dummy
-                      text ever since the 1500s, when an unknown printer
-                      took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </p>
-                  </div>
-                </div>
               </div>
               <div class="col-lg-4">
                 <h2 class="mb-4 text-primary font-weight-600">

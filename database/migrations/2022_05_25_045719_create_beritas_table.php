@@ -17,6 +17,7 @@ class CreateBeritasTable extends Migration
             $table->id('id_berita');
             $table->integer('id_kategori')->unsigned();
             $table->text('judul');
+            $table->text('slug');
             $table->string('penulis');
             $table->longText('isi');
             $table->string('image');

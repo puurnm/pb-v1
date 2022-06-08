@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Homepage;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\KategoriBerita;
+use Illuminate\Http\Request;
 
-class BeritaController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $beritas = Berita::orderBy('id_berita','ASC')->simplePaginate(10);
+        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
 
-        return view('homepage.berita', compact('beritas'))
-            ->with('i', ($request->input('page', 1) - 1) * 10);
+        return view('homepage.home', compact('kategori'));
     }
 
     /**
@@ -48,10 +48,10 @@ class BeritaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(KategoriBerita $kategori)
     {
-        $berita = Berita::where('slug', $slug)->first();
-        return view('homepage.berita-show',compact('berita'));
+        $berita = Berita::where('id_kategori', $kategori)->first();
+        return view('homepage.kategori-show',compact('berita'));
     }
 
     /**

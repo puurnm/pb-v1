@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\KategoriBerita;
 use App\Models\Berita;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Str;
 
 class BeritaController extends Controller
 {
@@ -63,9 +64,14 @@ class BeritaController extends Controller
         ]);
 
         $image = $request->file('image');
+
+        $slug = Str::slug($request->judul, '-');
         $result = CloudinaryStorage::upload($image->getRealPath(), $image->getClientOriginalName());
+
         $data = $request->all();
+        $data['slug'] = $slug;
         $data['image'] = $result;
+
         Berita::create($data);
 
         Flash::success('Berita created successfully.');
@@ -160,6 +166,7 @@ class BeritaController extends Controller
     {
         $data = $request->all();
         $berita = Berita::findOrFail($data['id']);
+        $slug = Str::slug($request->judul, '-');
         $file   = $request->file('image');
         $result = CloudinaryStorage::replace($berita->image, $file->getRealPath(), $file->getClientOriginalName());
 
@@ -168,6 +175,7 @@ class BeritaController extends Controller
         $berita->judul = $data['judul'];
         $berita->isi = $data['isi'];
         $berita->id_kategori = $data['id_kategori'];
+        $berita->slug = $slug;
         $berita->image = $result;
         $berita->save();
 

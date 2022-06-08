@@ -47,6 +47,7 @@
                     <p class="fs-15">
                       {!! $berita->isi !!}
                     </p>
+                    <div class="sharethis-inline-share-buttons"></div>
                   </div>
                 </div>
               </div>

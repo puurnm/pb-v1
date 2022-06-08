@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
   <div class="content-wrapper">
     <div class="container">
       <div class="row">
@@ -32,6 +32,17 @@
                 <h1 class="mt-5 text-center mb-5">
                   Contact Us
                 </h1>
+                <div class="col-log-12 col-xl-12 text-center">
+                    <br>
+                    <img src="{{ asset('images/sekolahekspor.png') }}" style="width:400px;height:250px;"/><br>
+                    <span class="text-light">Sosial Media</span>
+                    <div class="social-links">
+                        <a href="https://www.youtube.com/"><i class="fa fa-youtube">Youtube</i></a>
+                        <a href="https://www.instagram.com/"><i class="fa fa-instagram">Instagram</i></a>
+                        <a href="https://www.facebook.com/"><i class="fa fa-facebook">Facebook</i></a>
+                        <a href="https://www.twitter.com/"><i class="fa fa-twitter">twitter</i></a><br><br><br><br>
+                    </div>
+                </div>
                 <div class="row">
                   <div class="col-lg-12 mb-5 mb-sm-2">
                     <form>
@@ -92,4 +103,5 @@
       </div>
     </div>
 </div>
+
 @endsection

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\Homepage\BeritaController as HomepageBeritaController;
+use App\Http\Controllers\Homepage\KategoriController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -26,8 +26,10 @@ Route::get('/welcome', function () {
 // Route Homepage
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\Homepage\HomeController::class, 'index'])->name('home');
-Route::resource('berita', HomepageBeritaController::class);
-Route::get('/kategori', [App\Http\Controllers\HomepageController::class, 'kategoriShow'])->name('kategoriShow');
+Route::get('/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'index'])->name('berita.index');
+Route::get('/kategori/{id_kategori}', [App\Http\Controllers\HomepageController::class, 'kategoriShow'])->name('kategoriShow');
+Route::get('/berita/{slug}', [App\Http\Controllers\Homepage\BeritaController::class, 'show'])->name('berita.show');
+Route::resource('kategori-berita', KategoriController::class);
 Route::get('/contact-us', function () {
     return view('homepage.contactus');
 })->name('contact');

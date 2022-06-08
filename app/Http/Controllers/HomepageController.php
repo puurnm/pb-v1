@@ -18,9 +18,6 @@ class HomepageController extends Controller
     {
         $latest = Berita::orderBy('id_berita','DESC')->simplePaginate(3);
         $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
-        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
-
-        Str::substr($berita, 0, 50);
 
         return view('homepage.home', compact('latest','berita','kategori'))
             ->with('i', ($request->input('page', 1) - 1) * 3);
@@ -48,7 +45,7 @@ class HomepageController extends Controller
 
     public function kategoriShow(KategoriBerita $id)
     {
-        $berita = Berita::query()->where('id_kategori', $id)->first();
+        $berita = Berita::where('id_kategori', $id)->first();
         return view('homepage.kategori-show',compact('berita'));
     }
 

@@ -21,8 +21,6 @@ class HomeController extends Controller
         $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
         $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
 
-        Str::substr($berita, 0, 50);
-
         return view('homepage.home', compact('latest','berita','kategori'))
             ->with('i', ($request->input('page', 1) - 1) * 3);
     }

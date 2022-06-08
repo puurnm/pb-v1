@@ -55,7 +55,7 @@
               @foreach ($latest as $data => $latest)
               <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
                 <div class="pr-3">
-                  <h5>{{ $latest->judul }}</h5>
+                  <h6>{{ $latest->judul }}</h6>
                   <div class="fs-12">
                     <span class="mr-2">Photo </span>10 Minutes ago
                   </div>
@@ -64,63 +64,12 @@
                   <img
                     src="{{ $latest->image }}"
                     alt="thumb"
-                    style="width: 75px"
+                    style="width: 50px"
                     class="img-fluid img-lg"
                   />
                 </div>
               </div>
               @endforeach
-              <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
-                <div class="pr-3">
-                  <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                  <div class="fs-12">
-                    <span class="mr-2">Photo </span>10 Minutes ago
-                  </div>
-                </div>
-                <div class="rotate-img">
-                  <img
-                    src="assets/images/dashboard/home_1.jpg"
-                    alt="thumb"
-                    class="img-fluid img-lg"
-                  />
-                </div>
-              </div>
-
-              <div
-                class="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between"
-              >
-                <div class="pr-3">
-                  <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                  <div class="fs-12">
-                    <span class="mr-2">Photo </span>10 Minutes ago
-                  </div>
-                </div>
-                <div class="rotate-img">
-                  <img
-                    src="assets/images/dashboard/home_2.jpg"
-                    alt="thumb"
-                    class="img-fluid img-lg"
-                  />
-                </div>
-              </div>
-
-              <div
-                class="d-flex pt-4 align-items-center justify-content-between"
-              >
-                <div class="pr-3">
-                  <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                  <div class="fs-12">
-                    <span class="mr-2">Photo </span>10 Minutes ago
-                  </div>
-                </div>
-                <div class="rotate-img">
-                  <img
-                    src="assets/images/dashboard/home_3.jpg"
-                    alt="thumb"
-                    class="img-fluid img-lg"
-                  />
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -132,7 +81,7 @@
               <h2>Category</h2>
               <ul class="vertical-menu">
                   @foreach ($kategori as $e => $kategori)
-                  <li><a href="{{ route('kategoriShow') }}">{{ $kategori->nama_kategori }}</a></li>
+                  <li><a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a></li>
                   @endforeach
               </ul>
             </div>
@@ -153,21 +102,24 @@
                           />
                         </div>
                         <div class="badge-positioned">
-                          <span class="badge badge-danger font-weight-bold"
-                            >Flash news</span
-                          >
+                            <span class="badge badge-danger font-weight-bold">
+                                Flash news
+                            </span>
                         </div>
                       </div>
                     </div>
                     <div class="col-sm-8  grid-margin">
                       <h2 class="mb-2 font-weight-600">
-                        <a href="{{ route('berita.show', [$berita->id_berita]) }}">{{ $berita->judul }}</a>
+                        <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <div class="fs-13 mb-2">
-                        <span class="mr-2">Photo </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
+                        <span class="mr-2">Photo </span>{{ date('j M Y', strtotime($berita->created_at)) }}
                       </div>
                       <p class="mb-0">
-                          {!! $berita->isi !!}
+                        {{ substr(strip_tags($berita->isi), 0, 200) }}
+                        @if (strlen(strip_tags($berita->isi)) > 200)
+                          ... <a href="{{ route('berita.show', [$berita->slug]) }}" class="btn btn-info btn-sm">Read More</a>
+                        @endif
                       </p>
                     </div>
                   </div>
