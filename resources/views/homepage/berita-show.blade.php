@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
   <div class="content-wrapper">
     <div class="container">
       <div class="col-sm-12">

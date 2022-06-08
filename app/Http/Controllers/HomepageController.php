@@ -43,9 +43,9 @@ class HomepageController extends Controller
         return view('homepage.berita-show',compact('berita'));
     }
 
-    public function kategoriShow(KategoriBerita $id)
+    public function kategoriShow($id)
     {
-        $berita = Berita::where('id_kategori', $id)->first();
+        $berita = Berita::where('id_kategori', $id)->get();
         return view('homepage.kategori-show',compact('berita'));
     }
 

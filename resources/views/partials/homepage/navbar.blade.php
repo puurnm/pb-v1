@@ -29,14 +29,6 @@
                                 <div class="nav-item active">
                                     <a class="nav-link" href="{{ url('/berita') }}">Berita</a>
                                 </div>
-                                <div class="nav-item active dropdown show">
-                                    <a class="nav-link dropdown-toggle" href="{{ url('/kategori') }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategori</a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
                                 <div class="nav-item active">
                                     <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                                 </div>

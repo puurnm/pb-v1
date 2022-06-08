@@ -16,9 +16,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
-
-        return view('homepage.home', compact('kategori'));
+        //
     }
 
     /**
@@ -48,10 +46,12 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(KategoriBerita $kategori)
+    public function show(Request $request, $id)
     {
-        $berita = Berita::where('id_kategori', $kategori)->first();
-        return view('homepage.kategori-show',compact('berita'));
+        $kategori = KategoriBerita::findOrFail($id);
+        $berita = Berita::where('id_kategori', $id)->simplePaginate(10);
+        return view('homepage.kategori-show',compact('kategori', 'berita'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

@@ -27,7 +27,7 @@ Route::get('/welcome', function () {
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\Homepage\HomeController::class, 'index'])->name('home');
 Route::get('/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'index'])->name('berita.index');
-Route::get('/kategori/{id_kategori}', [App\Http\Controllers\HomepageController::class, 'kategoriShow'])->name('kategoriShow');
+Route::get('/kategori/{id_kategori}', [App\Http\Controllers\Homepage\KategoriController::class, 'show'])->name('kategoriShow');
 Route::get('/berita/{slug}', [App\Http\Controllers\Homepage\BeritaController::class, 'show'])->name('berita.show');
 Route::resource('kategori-berita', KategoriController::class);
 Route::get('/contact-us', function () {

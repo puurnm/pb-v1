@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use App\Models\KategoriBerita;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,7 +18,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $latest = Berita::orderBy('id_berita','DESC')->simplePaginate(3);
-        $berita = Berita::orderBy('id_berita','ASC')->simplePaginate(3);
+        $berita = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori','beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita','ASC')->simplePaginate(3);
         $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
 
         return view('homepage.home', compact('latest','berita','kategori'))

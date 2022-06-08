@@ -78,7 +78,7 @@
         <div class="col-lg-3 stretch-card grid-margin">
           <div class="card">
             <div class="card-body">
-              <h2>Category</h2>
+              <h2>Kategori</h2>
               <ul class="vertical-menu">
                   @foreach ($kategori as $e => $kategori)
                   <li><a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a></li>
@@ -101,11 +101,11 @@
                             class="img-fluid"
                           />
                         </div>
-                        <div class="badge-positioned">
+                        <!-- <div class="badge-positioned">
                             <span class="badge badge-danger font-weight-bold">
                                 Flash news
                             </span>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="col-sm-8  grid-margin">
@@ -113,12 +113,12 @@
                         <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <div class="fs-13 mb-2">
-                        <span class="mr-2">Photo </span>{{ date('j M Y', strtotime($berita->created_at)) }}
+                        <span class="mr-2">{{ $berita->nama_kategori }} </span>{{ date('j M Y', strtotime($berita->created_at)) }}
                       </div>
                       <p class="mb-0">
-                        {{ substr(strip_tags($berita->isi), 0, 200) }}
+                        {!! substr(strip_tags($berita->isi), 0, 200) !!}
                         @if (strlen(strip_tags($berita->isi)) > 200)
-                          ... <a href="{{ route('berita.show', [$berita->slug]) }}" class="btn btn-info btn-sm">Read More</a>
+                          ... <a href="{{ route('berita.show', [$berita->slug]) }}">Read More</a>
                         @endif
                       </p>
                     </div>

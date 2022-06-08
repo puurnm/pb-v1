@@ -52,12 +52,12 @@
                         <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <p class="fs-13 text-muted mb-0">
-                        <span class="mr-2">Photo </span>10 Minutes ago
+                        <span class="mr-2">{{ $berita->nama_kategori }} </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
                       </p>
                       <p class="fs-15">
                         <strong>{{ $berita->penulis }}</strong> - {{ substr(strip_tags($berita->isi), 0, 200) }}
                         @if (strlen(strip_tags($berita->isi)) > 200)
-                          ... <a href="{{ route('berita.show', [$berita->slug]) }}" class="btn btn-info btn-sm">Read More</a>
+                          ... <a href="{{ route('berita.show', [$berita->slug]) }}">Read More</a>
                         @endif
                       </p>
                     </div>
@@ -69,132 +69,36 @@
               </div>
               <div class="col-lg-4">
                 <h2 class="mb-4 text-primary font-weight-600">
-                  Latest news
+                  Kategori
                 </h2>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="border-bottom pb-4 pt-4">
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <h5 class="font-weight-600 mb-1">
-                            Ways to stay social online while in self..
-                          </h5>
-                          <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">Photo </span>10 Minutes ago
-                          </p>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="rotate-img">
-                            <img
-                              src="../assets/images/magazine/Magzine_1.jpg"
-                              alt="banner"
-                              class="img-fluid"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="border-bottom pb-4 pt-4">
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <h5 class="font-weight-600 mb-1">
-                            Premier League players join charity..
-                          </h5>
-                          <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">Photo </span>10 Minutes ago
-                          </p>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="rotate-img">
-                            <img
-                              src="../assets/images/magazine/Magzine_2.jpg"
-                              alt="banner"
-                              class="img-fluid"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="pt-4">
-                      <div class="row">
-                        <div class="col-sm-8">
-                          <h5 class="font-weight-600 mb-1">
-                            UK Athletics board changed stance on..
-                          </h5>
-                          <p class="fs-13 text-muted mb-0">
-                            <span class="mr-2">Photo </span>10 Minutes ago
-                          </p>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="rotate-img">
-                            <img
-                              src="../assets/images/magazine/Magzine_3.jpg"
-                              alt="banner"
-                              class="img-fluid"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ul class="vertical-menu">
+                    @foreach ($kategori as $e => $kategori)
+                    <li>
+                        <a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
+                    </li>
+                    @endforeach
+                </ul>
                 <div class="trending">
                   <h2 class="mb-4 text-primary font-weight-600">
-                    Trending
+                    Latest News
                   </h2>
+                  @foreach ($latests as $e => $latest)
                   <div class="mb-4">
                     <div class="rotate-img">
                       <img
-                        src="../assets/images/magazine/Magzine_4.jpg"
+                        src="{{ $latest->image }}"
                         alt="banner"
                         class="img-fluid"
                       />
                     </div>
                     <h3 class="mt-3 font-weight-600">
-                      Virus Kills Member Of Advising Iran’s Supreme
+                        <a href="{{ route('berita.show', [$berita->slug]) }}" style="color: black">{{ $latest->judul }}</a>
                     </h3>
                     <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
+                      <span class="mr-2">{{ $latest->nama_kategori }} </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
                     </p>
                   </div>
-                  <div class="mb-4">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_5.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                    <h3 class="mt-3 font-weight-600">
-                      Virus Kills Member Of Advising Iran’s Supreme
-                    </h3>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                  </div>
-                  <div class="mb-4">
-                    <div class="rotate-img">
-                      <img
-                        src="../assets/images/magazine/Magzine_6.jpg"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                    <h3 class="mt-3 font-weight-600">
-                      Virus Kills Member Of Advising Iran’s Supreme
-                    </h3>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </p>
-                  </div>
+                  @endforeach
                 </div>
               </div>
             </div>
