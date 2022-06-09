@@ -48,6 +48,39 @@
                       {!! $berita->isi !!}
                     </p>
                     <div class="sharethis-inline-share-buttons"></div>
+                    <div class="row">
+                        @include('flash::message')
+                        <div class="col-lg-12 mb-5 mb-sm-2" style="margin-top: 10px">
+                          <form action="{{ route('comment')}}" method="POST">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="nama" placeholder="Name *"/>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email *"/>
+                                  </div>
+                                </div>
+                              </div>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="form-group">
+                                  <textarea class="form-control textarea" placeholder="Comment *" id="comment" name="comment"></textarea>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-lg btn-dark font-weight-bold mt-3">Send Message</button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>

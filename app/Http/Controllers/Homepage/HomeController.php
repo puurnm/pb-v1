@@ -17,14 +17,15 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $main = Berita::where('id_berita', '=', '1')->get();
         $latest = Berita::orderBy('id_berita','DESC')->simplePaginate(3);
         $berita = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori','beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
             ->orderBy('id_berita','ASC')->simplePaginate(3);
         $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
 
-        return view('homepage.home', compact('latest','berita','kategori'))
+        return view('homepage.home', compact('main', 'latest', 'berita', 'kategori'))
             ->with('i', ($request->input('page', 1) - 1) * 3);
     }
 

@@ -16,4 +16,8 @@ class Berita extends Model
     public function kategori() {
         return $this->belongsTo('App\Models\KategoriBerita', 'id_kategori');
     }
+
+    public function comments() {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 }

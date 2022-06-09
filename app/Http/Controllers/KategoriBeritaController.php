@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KategoriBerita;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Str;
 
 class KategoriBeritaController extends Controller
 {
@@ -27,7 +28,12 @@ class KategoriBeritaController extends Controller
             'nama_kategori' => 'required',
         ]);
 
-        KategoriBerita::create($request->all());
+        $slug = Str::slug($request->nama_kategori, '-');
+        $data = $request->all();
+        $data['slug'] = $slug;
+        KategoriBerita::create($data);
+
+        Flash::success('Kategori created successfully.');
 
         return redirect()->route('kategori.index')
                         ->with('success','Kategori created successfully.');
@@ -68,7 +74,10 @@ class KategoriBeritaController extends Controller
             'nama_kategori' => 'required'
         ]);
 
-        $kategori->update($request->all());
+        $slug = Str::slug($request->nama_kategori, '-');
+        $data = $request->all();
+        $data['slug'] = $slug;
+        $kategori->update($data);
 
         Flash::success('Kategori updated successfully.');
 

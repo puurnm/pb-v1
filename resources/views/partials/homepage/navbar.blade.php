@@ -36,8 +36,8 @@
                         </div>
                     </div>
                     <div>
-                        <form class="d-flex" role="search">
-                            <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" role="search" action="{{ route('search')}}" method="GET">
+                            <input class="form-control form-control-sm" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>

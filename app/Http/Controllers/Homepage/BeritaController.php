@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Homepage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
+use App\Models\Comment;
 use App\Models\KategoriBerita;
 use Illuminate\Support\Facades\DB;
 
@@ -62,6 +63,33 @@ class BeritaController extends Controller
     {
         $berita = Berita::where('slug', $slug)->first();
         return view('homepage.berita-show',compact('berita'));
+    }
+
+    public function comment(Request $request)
+    {
+        request()->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'comment' => 'required'
+        ]);
+
+        Comment::create([
+            'id_berita' => $request->id_berita,
+            'parent_id' => $request->parent_id != '' ? $request->parent_id:NULL,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'comment' => $request->comment
+        ]);
+        return redirect()->route('berita.show')->with(['success' => 'Komentar Ditambahkan']);
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+        $beritas = Berita::where('judul', 'like', "%" . $keyword . "%")->simplePaginate(5);
+
+        return view('homepage.search', compact('beritas'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**

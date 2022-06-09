@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('kategori_berita', function (Blueprint $table) {
             $table->increments('id_kategori');
             $table->string('nama_kategori');
+            $table->string('slug');
             $table->timestamps();
         });
     }

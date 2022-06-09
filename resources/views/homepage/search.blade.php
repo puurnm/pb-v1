@@ -60,7 +60,7 @@
                         <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <p class="fs-13 text-muted mb-0">
-                        <span class="mr-2">{{ $berita->nama_kategori }} </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
+                        <span class="mr-2"></span>{{ date('M j, Y', strtotime($berita->created_at)) }}
                       </p>
                       <p class="fs-15">
                         <strong>{{ $berita->penulis }}</strong> - {{ substr(strip_tags($berita->isi), 0, 200) }}
@@ -74,40 +74,6 @@
                   <div class="text-center">
                     {!! $beritas->render() !!}
                   </div>
-              </div>
-              <div class="col-lg-4">
-                <h2 class="mb-4 text-primary font-weight-600">
-                  Kategori
-                </h2>
-                <ul class="vertical-menu">
-                    @foreach ($kategori as $e => $kategori)
-                    <li>
-                        <a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
-                    </li>
-                    @endforeach
-                </ul>
-                <div class="trending">
-                  <h2 class="mb-4 text-primary font-weight-600">
-                    Latest News
-                  </h2>
-                  @foreach ($latests as $e => $latest)
-                  <div class="mb-4">
-                    <div class="rotate-img">
-                      <img
-                        src="{{ $latest->image }}"
-                        alt="banner"
-                        class="img-fluid"
-                      />
-                    </div>
-                    <h3 class="mt-3 font-weight-600">
-                        <a href="{{ route('berita.show', [$berita->slug]) }}" style="color: black">{{ $latest->judul }}</a>
-                    </h3>
-                    <p class="fs-13 text-muted mb-0">
-                      <span class="mr-2">{{ $latest->nama_kategori }} </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
-                    </p>
-                  </div>
-                  @endforeach
-                </div>
               </div>
             </div>
           </div>

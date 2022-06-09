@@ -5,19 +5,17 @@
     <div class="container">
       <div class="d-lg-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-          <span class="badge badge-dark mr-3">Flash news</span>
-          <p class="mb-0">
-            Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s.
-          </p>
+            <span class="mr-3 text-danger">
+                <?php
+                echo Carbon\Carbon::now()->isoFormat('dddd, D MMM Y');
+                ?>
+            </span>
         </div>
         <div class="d-flex">
-          <span class="mr-3 text-danger">
-              <?php
-              echo date('l, F d, Y');
-              ?>
-          </span>
-          <span class="text-danger">30°C,London</span>
+            <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
+                <input class="form-control form-control-sm" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
       </div>
     </div>
@@ -26,26 +24,25 @@
     <div class="container">
       <div class="row" data-aos="fade-up">
         <div class="col-xl-8 stretch-card grid-margin">
+          @foreach ($main as $e => $utama)
           <div class="position-relative">
-            <img
-              src="assets/images/dashboard/banner.jpg"
-              alt="banner"
-              class="img-fluid"
-            />
+            <img src="{{ $utama->image }}" alt="banner" class="img-fluid"/>
             <div class="banner-content">
-              <div class="badge badge-danger fs-12 font-weight-bold mb-3">
-                global news
-              </div>
-              <h1 class="mb-0">GLOBAL PANDEMIC</h1>
+                <h1 class="mb-0">
+                    <a href="{{ route('berita.show', [$utama->slug]) }}" style="color: white">{{ $utama->judul }}</a>
+                </h1>
               <h1 class="mb-2">
-                Coronavirus Outbreak LIVE Updates: ICSE, CBSE Exams
-                Postponed, 168 Trains
+                {!! substr(strip_tags($utama->isi), 0, 50) !!}
+                        @if (strlen(strip_tags($utama->isi)) > 50)
+                          ...
+                        @endif
               </h1>
               <div class="fs-12">
                 <span class="mr-2">Photo </span>10 Minutes ago
               </div>
             </div>
           </div>
+          @endforeach
         </div>
         <div class="col-xl-4 stretch-card grid-margin">
           <div class="card bg-dark text-white">
@@ -55,9 +52,14 @@
               @foreach ($latest as $data => $latest)
               <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
                 <div class="pr-3">
-                  <h6>{{ $latest->judul }}</h6>
+                  <h6>
+                    <a href="{{ route('berita.show', [$latest->slug]) }}" style="color: white">{{ $latest->judul }}</a>
+                  </h6>
                   <div class="fs-12">
-                    <span class="mr-2">Photo </span>10 Minutes ago
+                    <span class="mr-2">Photo </span>
+                    <?php
+                    echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();;
+                    ?>
                   </div>
                 </div>
                 <div class="rotate-img">
@@ -113,7 +115,10 @@
                         <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                       </h2>
                       <div class="fs-13 mb-2">
-                        <span class="mr-2">{{ $berita->nama_kategori }} </span>{{ date('j M Y', strtotime($berita->created_at)) }}
+                        <span class="mr-2">{{ $berita->nama_kategori }} </span>
+                        <?php
+                        echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
+                        ?>
                       </div>
                       <p class="mb-0">
                         {!! substr(strip_tags($berita->isi), 0, 200) !!}
