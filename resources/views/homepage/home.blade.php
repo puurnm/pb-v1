@@ -6,9 +6,7 @@
         <div class="d-lg-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <span class="badge badge-dark mr-3">Export Go</span>
-                <p class="mb-0">
-                    Be the first, youngest, and foremost.
-                </p>
+                <span class="badge badge-info mr-3">Be the first, youngest, and foremost.</span>
             </div>
             <div class="d-flex">
                 <span class="mr-3 text-danger">
@@ -95,23 +93,17 @@
                                         <div class="rotate-img">
                                             <img src="{{ $berita->image }}" alt="thumb" class="img-fluid" />
                                         </div>
-                                        <!-- <div class="badge-positioned">
-                            <span class="badge badge-danger font-weight-bold">
-                                Flash news
-                            </span>
-                        </div> -->
                                     </div>
                                 </div>
                                 <div class="col-sm-8  grid-margin">
                                     <h2 class="mb-2 font-weight-600">
-                                        <a
-                                            href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
+                                        <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                                     </h2>
                                     <div class="fs-13 mb-2">
                                         <span class="mr-2">{{ $berita->nama_kategori }} </span>
-                                        <?php
-                                        echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
-                                        ?>
+                                        @php
+                                            echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
+                                        @endphp
                                     </div>
                                     <p class="mb-0">
                                         {!! substr(strip_tags($berita->isi), 0, 200) !!}
@@ -133,72 +125,59 @@
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card-title">
-                                    Sport light
+                                    Produk
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-6 col-lg-8 col-sm-6">
-                                        <div class="rotate-img">
-                                            <img src="assets/images/dashboard/home_16.jpg" alt="thumb"
-                                                class="img-fluid" />
+                                    @foreach ($bigproduct as $key => $big)
+                                        <div class="col-xl-6 col-lg-8 col-sm-6">
+                                            <div class="rotate-img">
+                                                <img src="{{ $big->image }}" alt="thumb"
+                                                    class="img-fluid" />
+                                            </div>
+                                            <h2 class="mt-3 text-primary mb-2">
+                                                <a href="{{ route('berita.show', [$big->slug]) }}" style="color: black">
+                                                    {!! substr(strip_tags($big->judul), 0, 18) !!}
+                                                    @if (strlen(strip_tags($big->judul)) > 18)
+                                                        ..
+                                                    @endif
+                                                </a>
+                                            </h2>
+                                            <p class="fs-13 mb-1 text-muted">
+                                                <span class="mr-2">{{ $big->nama_kategori }} </span>
+                                                @php
+                                                    echo Carbon\Carbon::parse($big->created_at)->isoFormat('D MMM Y');
+                                                @endphp
+                                            </p>
+                                            <p class="my-3 fs-15">
+                                                {!! substr(strip_tags($big->isi), 0, 150) !!}
+                                                @if (strlen(strip_tags($big->isi)) > 150)
+                                                    ... <a href="{{ route('berita.show', [$big->slug]) }}">Read More</a>
+                                                @endif
+                                            </p>
                                         </div>
-                                        <h2 class="mt-3 text-primary mb-2">
-                                            Newsrooms exercise..
-                                        </h2>
-                                        <p class="fs-13 mb-1 text-muted">
-                                            <span class="mr-2">Photo </span>10 Minutes ago
-                                        </p>
-                                        <p class="my-3 fs-15">
-                                            Lorem Ipsum has been the industry's standard dummy
-                                            text ever since the 1500s, when an unknown printer
-                                            took
-                                        </p>
-                                        <a href="#" class="font-weight-600 fs-16 text-dark">Read more</a>
-                                    </div>
+                                    @endforeach
                                     <div class="col-xl-6 col-lg-4 col-sm-6">
+                                        @foreach ($smallproduct as $key => $small)
                                         <div class="border-bottom pb-3 mb-3">
                                             <h3 class="font-weight-600 mb-0">
-                                                Social distancing is ..
+                                                <a href="{{ route('berita.show', [$small->slug]) }}" style="color: black">
+                                                    {!! substr(strip_tags($small->judul), 0, 20) !!}
+                                                    @if (strlen(strip_tags($small->judul)) > 20)
+                                                        ..
+                                                    @endif
+                                                </a>
                                             </h3>
                                             <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
+                                                <span class="mr-2">{{ $small->nama_kategori }} </span>
+                                                @php
+                                                    echo Carbon\Carbon::parse($small->created_at)->isoFormat('D MMM Y');
+                                                @endphp
                                             </p>
                                             <p class="mb-0">
-                                                Lorem Ipsum has been the industry's
+                                                {!! substr(strip_tags($small->isi), 0, 34) !!}
                                             </p>
                                         </div>
-                                        <div class="border-bottom pb-3 mb-3">
-                                            <h3 class="font-weight-600 mb-0">
-                                                Panic buying is forcing..
-                                            </h3>
-                                            <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
-                                            </p>
-                                            <p class="mb-0">
-                                                Lorem Ipsum has been the industry's
-                                            </p>
-                                        </div>
-                                        <div class="border-bottom pb-3 mb-3">
-                                            <h3 class="font-weight-600 mb-0">
-                                                Businesses ask hundreds..
-                                            </h3>
-                                            <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
-                                            </p>
-                                            <p class="mb-0">
-                                                Lorem Ipsum has been the industry's
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-weight-600 mb-0">
-                                                Tesla's California factory..
-                                            </h3>
-                                            <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
-                                            </p>
-                                            <p class="mb-0">
-                                                Lorem Ipsum has been the industry's
-                                            </p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -206,141 +185,66 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="card-title">
-                                            Sport light
+                                            UMKM
                                         </div>
-                                        <div class="border-bottom pb-3">
-                                            <div class="rotate-img">
-                                                <img src="assets/images/dashboard/home_17.jpg" alt="thumb"
-                                                    class="img-fluid" />
+                                        @foreach ($umkm as $key => $data)
+                                            <div class="border-bottom pb-3 mb-3">
+                                                <div class="rotate-img">
+                                                    <img src="{{ $data->image }}" alt="thumb"
+                                                        class="img-fluid" />
+                                                </div>
+                                                <p class="fs-16 font-weight-600 mb-0 mt-3">
+                                                    <a href="{{ route('berita.show', [$data->slug]) }}" style="color: black">
+                                                        {!! substr(strip_tags($data->judul), 0, 28) !!}
+                                                    </a>
+                                                </p>
+                                                <p class="fs-13 text-muted mb-0">
+                                                    <span class="mr-2">{{ $data->nama_kategori }} </span>
+                                                    @php
+                                                        echo Carbon\Carbon::parse($data->created_at)->isoFormat('D MMM Y');
+                                                    @endphp
+                                                </p>
                                             </div>
-                                            <p class="fs-16 font-weight-600 mb-0 mt-3">
-                                                Kaine: Trump Jr. may have
-                                            </p>
-                                            <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
-                                            </p>
-                                        </div>
-                                        <div class="pt-3 pb-3">
-                                            <div class="rotate-img">
-                                                <img src="assets/images/dashboard/home_18.jpg" alt="thumb"
-                                                    class="img-fluid" />
-                                            </div>
-                                            <p class="fs-16 font-weight-600 mb-0 mt-3">
-                                                Kaine: Trump Jr. may have
-                                            </p>
-                                            <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">Photo </span>10 Minutes ago
-                                            </p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="card-title">
-                                            Celebrity news
+                                            Edukasi
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="border-bottom pb-3">
-                                                    <div class="row">
-                                                        <div class="col-sm-5 pr-2">
-                                                            <div class="rotate-img">
-                                                                <img src="assets/images/dashboard/home_19.jpg"
-                                                                    alt="thumb" class="img-fluid w-100" />
+                                        @foreach ($edukasi as $key => $data)
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="border-bottom pb-3 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-sm-5 pr-2">
+                                                                <div class="rotate-img">
+                                                                    <img src="{{ $data->image }}"
+                                                                        alt="thumb" class="img-fluid w-100" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-7 pl-2">
-                                                            <p class="fs-16 font-weight-600 mb-0">
-                                                                Online shopping ..
-                                                            </p>
-                                                            <p class="fs-13 text-muted mb-0">
-                                                                <span class="mr-2">Photo </span>10
-                                                                Minutes ago
-                                                            </p>
-                                                            <p class="mb-0 fs-13">
-                                                                Lorem Ipsum has been
-                                                            </p>
+                                                            <div class="col-sm-7 pl-2">
+                                                                <p class="fs-16 font-weight-600 mb-0 text-capitalize">
+                                                                    <a href="{{ route('berita.show', [$data->slug]) }}" style="color: black">
+                                                                        {!! substr(strip_tags($data->judul), 0, 15) !!}
+                                                                        @if (strlen(strip_tags($data->judul)) > 15)
+                                                                            ..
+                                                                        @endif
+                                                                    </a>
+                                                                </p>
+                                                                <p class="fs-13 text-muted mb-0">
+                                                                    @php
+                                                                        echo Carbon\Carbon::parse($data->created_at)->isoFormat('D MMM Y');
+                                                                    @endphp
+                                                                </p>
+                                                                <p class="mb-0 fs-13">
+                                                                    {!! substr(strip_tags($data->isi), 0, 20) !!}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="border-bottom pb-3 pt-3">
-                                                    <div class="row">
-                                                        <div class="col-sm-5 pr-2">
-                                                            <div class="rotate-img">
-                                                                <img src="assets/images/dashboard/home_20.jpg"
-                                                                    alt="thumb" class="img-fluid w-100" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-7 pl-2">
-                                                            <p class="fs-16 font-weight-600 mb-0">
-                                                                Online shopping ..
-                                                            </p>
-                                                            <p class="fs-13 text-muted mb-0">
-                                                                <span class="mr-2">Photo </span>10
-                                                                Minutes ago
-                                                            </p>
-                                                            <p class="mb-0 fs-13">
-                                                                Lorem Ipsum has been
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="border-bottom pb-3 pt-3">
-                                                    <div class="row">
-                                                        <div class="col-sm-5 pr-2">
-                                                            <div class="rotate-img">
-                                                                <img src="assets/images/dashboard/home_21.jpg"
-                                                                    alt="thumb" class="img-fluid w-100" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-7 pl-2">
-                                                            <p class="fs-16 font-weight-600 mb-0">
-                                                                Online shopping ..
-                                                            </p>
-                                                            <p class="fs-13 text-muted mb-0">
-                                                                <span class="mr-2">Photo </span>10
-                                                                Minutes ago
-                                                            </p>
-                                                            <p class="mb-0 fs-13">
-                                                                Lorem Ipsum has been
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="pt-3">
-                                                    <div class="row">
-                                                        <div class="col-sm-5 pr-2">
-                                                            <div class="rotate-img">
-                                                                <img src="assets/images/dashboard/home_22.jpg"
-                                                                    alt="thumb" class="img-fluid w-100" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-7 pl-2">
-                                                            <p class="fs-16 font-weight-600 mb-0">
-                                                                Online shopping ..
-                                                            </p>
-                                                            <p class="fs-13 text-muted mb-0">
-                                                                <span class="mr-2">Photo </span>10
-                                                                Minutes ago
-                                                            </p>
-                                                            <p class="mb-0 fs-13">
-                                                                Lorem Ipsum has been
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

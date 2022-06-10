@@ -16,12 +16,12 @@
                         </li>
                         <li>
                             <a href="#">
-                                <i class="mdi mdi-youtube"></i>
+                                <i class="mdi mdi-instagram"></i>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="mdi mdi-twitter"></i>
+                                <i class="mdi mdi-youtube"></i>
                             </a>
                         </li>
                     </ul>
@@ -34,13 +34,13 @@
                             <div class="footer-border-bottom pb-2">
                                 <div class="row">
                                     <div class="col-5">
-                                        <a href="https://sekolahekspor.com/" target="_blank">
-                                            <img src="{{ asset('images/sekolahekspor.png') }}" alt="thumb" class="img-fluid">
+                                        <a href="https://kampusmerdeka.kemdikbud.go.id/" target="_blank">
+                                            <img src="{{ asset('images/kampusmerdeka.png') }}" alt="thumb" class="img-fluid">
                                         </a>
                                     </div>
                                     <div class="col-5">
-                                        <a href="https://kampusmerdeka.kemdikbud.go.id/" target="_blank">
-                                            <img src="{{ asset('images/kampusmerdeka.png') }}" alt="thumb" class="img-fluid">
+                                        <a href="https://sekolahekspor.com/" target="_blank">
+                                            <img src="{{ asset('images/sekolahekspor.png') }}" alt="thumb" class="img-fluid">
                                         </a>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                 <div class="col-sm-12">
                     <div class="d-sm-flex justify-content-between align-items-center">
                         <div class="fs-14 font-weight-600">
-                            © 2022 @ <a href="{{ route('home') }}" target="_blank" class="text-white">
+                            Copyright © 2022 <a href="{{ route('home') }}" target="_blank" class="text-white">
                                 Export Go</a>. All rights reserved.
                         </div>
                         <div class="fs-14 font-weight-600">

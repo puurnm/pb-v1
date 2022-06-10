@@ -6,9 +6,7 @@
         <div class="d-lg-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <span class="badge badge-dark mr-3">Export Go</span>
-                <p class="mb-0">
-                    Be the first, youngest, and foremost.
-                </p>
+                <span class="badge badge-info mr-3">Be the first, youngest, and foremost.</span>
             </div>
             <div class="d-flex">
                 <span class="mr-3 text-danger">
@@ -44,8 +42,13 @@
                                     <p class="fs-15">
                                         {!! $berita->isi !!}
                                     </p>
-                                    <div class="sharethis-inline-share-buttons"></div>
-                                    <div class="row">
+                                    <div class="mt-15">
+                                        <p class="fs-15">
+                                            Bagikan ke :
+                                        </p>
+                                        <div class="sharethis-inline-share-buttons"></div>
+                                    </div>
+                                    <div class="row mb-7">
                                         <div class="col-lg-12 mb-5 mb-sm-2" style="margin-top: 10px">
                                             <div id="disqus_thread"></div>
                                         </div>

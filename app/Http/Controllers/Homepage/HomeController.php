@@ -20,15 +20,31 @@ class HomeController extends Controller
         $main = Berita::where('id_berita', '=', '1')->get();
         $latest = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','DESC')->simplePaginate(3);
+            ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita', 'DESC')->simplePaginate(3);
         $berita = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','ASC')->simplePaginate(3);
-        $kategori = KategoriBerita::orderBy('nama_kategori','ASC')->get();
+            ->orderBy('id_berita', 'ASC')->simplePaginate(3);
+        $kategori = KategoriBerita::orderBy('nama_kategori', 'ASC')->get();
+        $bigproduct = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where('nama_kategori', '=', 'Produk')->orderByRaw('RAND()')->take(1)->get();
+        $smallproduct = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where('nama_kategori', '=', 'Produk')->orderByRaw('RAND()')->take(4)->get();
+        $umkm = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where('nama_kategori', '=', 'UMKM')->orderByRaw('RAND()')->take(2)->get();
+        $edukasi = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where('nama_kategori', '=', 'Edukasi')->orderByRaw('RAND()')->take(4)->get();
 
-        return view('homepage.home', compact('main', 'latest', 'berita', 'kategori'))
+        return view('homepage.home', compact('main', 'latest', 'berita', 'kategori', 'bigproduct', 'smallproduct', 'umkm', 'edukasi'))
             ->with('i', ($request->input('page', 1) - 1) * 3);
     }
 }

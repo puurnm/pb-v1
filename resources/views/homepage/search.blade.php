@@ -6,9 +6,7 @@
         <div class="d-lg-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <span class="badge badge-dark mr-3">Export Go</span>
-                <p class="mb-0">
-                    Be the first, youngest, and foremost.
-                </p>
+                <span class="badge badge-info mr-3">Be the first, youngest, and foremost.</span>
             </div>
             <div class="d-flex">
                 <span class="mr-3 text-danger">
