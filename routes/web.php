@@ -7,7 +7,6 @@ use App\Http\Controllers\Homepage\KategoriController;
 use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +28,7 @@ Route::get('/home', [App\Http\Controllers\Homepage\HomeController::class, 'index
 Route::get('/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'index'])->name('berita.index');
 Route::get('/kategori/{id_kategori}', [App\Http\Controllers\Homepage\KategoriController::class, 'show'])->name('kategoriShow');
 Route::get('/berita/{slug}', [App\Http\Controllers\Homepage\BeritaController::class, 'show'])->name('berita.show');
-Route::get('/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'search'])->name('search');
-Route::post('/berita/comment', [App\Http\Controllers\Homepage\BeritaController::class, 'store'])->name('comment');
+Route::get('/search/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'search'])->name('search');
 Route::resource('kategori-berita', KategoriController::class);
 Route::get('/contact-us', function () {
     return view('homepage.contactus');

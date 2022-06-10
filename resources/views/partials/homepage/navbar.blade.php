@@ -9,11 +9,13 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <a class="navbar-brand" href="{{ route('home') }}">
-                            <img src="{{ asset('images/logo.png') }}" style="width:114px;height:30px;" alt="Brand Logo"/>
+                            <img src="{{ asset('images/logo.png') }}" style="width:114px;height:30px;"
+                                alt="Brand Logo" />
                         </a>
                     </div>
                     <div>
-                        <button class="navbar-toggler" type="button" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="navbar-collapse justify-content-center collapse" id="navbarSupportedContent">
@@ -29,6 +31,20 @@
                                 <div class="nav-item active">
                                     <a class="nav-link" href="{{ url('/berita') }}">Berita</a>
                                 </div>
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Kategori
+                                    </a>
+                                    @php
+                                        $kategori = App\Models\KategoriBerita::orderBy('nama_kategori','ASC')->get();
+                                    @endphp
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @foreach ($kategori as $key =>$kategori)
+                                            <a class="dropdown-item" href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori}}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
                                 <div class="nav-item active">
                                     <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                                 </div>
@@ -36,13 +52,19 @@
                         </div>
                     </div>
                     <div>
-                        <form class="d-flex" role="search" action="{{ route('search')}}" method="GET">
-                            <input class="form-control form-control-sm" type="search" id="search" name="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
+                            <input class="form-control form-control-sm" type="search" id="search" name="search"
+                                placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-  </header>
+</header>
