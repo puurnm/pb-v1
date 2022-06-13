@@ -52,15 +52,19 @@
                                             </td>
                                             <td>
                                                 {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
+                                                @if ($user->id==1)
+                                                    <a type="button" class="btn btn-warning"><i class="fa fa-exclamation-circle fa-lg" style="font-size: 15px"></i><strong> No Action</strong></a>
+                                                @else
                                                 <div class='btn-group'>
                                                     <a href="{{ route('user.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                                                     @can('role-edit')
                                                         <a href="{{ route('user.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
                                                     @can('role-delete')
-                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
                                                     @endcan
                                                 </div>
+                                                @endif
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>
