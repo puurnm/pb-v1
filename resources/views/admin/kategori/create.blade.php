@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -7,7 +7,7 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-            <a href="{{ route('user.index') }}">User</a>
+            <a href="{{ route('kategori.index') }}">Kategori</a>
         </li>
         <li class="breadcrumb-item active">
             <a>Create</a>

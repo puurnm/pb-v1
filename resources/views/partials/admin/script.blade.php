@@ -1,5 +1,7 @@
+<!-- CoreUI CSS -->
 <script src="{{ mix('js/app.js') }}" defer></script>
 <script src="{{ asset('js/perfect-scrollbar') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.js"></script>
 
 <!-- Bootstrap 4 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -19,6 +21,7 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
 </script>
 
 <!-- Sweet Alert -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script type="text/javascript">
     $('.show_confirm').click(function(event) {

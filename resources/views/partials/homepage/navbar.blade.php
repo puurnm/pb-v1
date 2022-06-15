@@ -37,21 +37,40 @@
                                         Kategori
                                     </a>
                                     @php
-                                        $kategori = App\Models\KategoriBerita::orderBy('nama_kategori','ASC')->get();
+                                        $kategori = App\Models\KategoriBerita::orderBy('nama_kategori', 'ASC')->get();
                                     @endphp
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        @foreach ($kategori as $key =>$kategori)
-                                            <a class="dropdown-item" href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori}}</a>
+                                        @foreach ($kategori as $key => $kategori)
+                                            <a class="dropdown-item"
+                                                href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="nav-item active">
                                     <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
                                 </div>
+                                <div class="pos-f-t">
+                                    <div class="collapse" id="navbarToggleExternalContent">
+                                        <div class="p-4">
+                                            <form class="form-inline my-2 my-lg-0" role="search"
+                                                action="{{ route('search') }}" method="GET">
+                                                <input class="form-control mr-sm-2" type="search" id="search"
+                                                    name="search" placeholder="Search" aria-label="Search">
+                                                <button class="btn btn-outline-success my-2 my-sm-0 mr-auto"
+                                                    type="submit">Search</button>
+                                            </form>
+                                            @if ($message = Session::get('success'))
+                                                <div class="alert alert-success">
+                                                    <p>{{ $message }}</p>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="social-media">
                         <form class="d-flex" role="search" action="{{ route('search') }}" method="GET">
                             <input class="form-control form-control-sm" type="search" id="search" name="search"
                                 placeholder="Search" aria-label="Search">

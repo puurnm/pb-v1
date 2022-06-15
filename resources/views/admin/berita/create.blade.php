@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -52,7 +52,8 @@
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="image">Gambar :</label>
-                                <input type="file" class="form-control-file" id="image" name="image">
+                                <input type="file" class="form-control-file" id="image" name="image" aria-describedby="imageHelp">
+                                <small id="imageHelp" class="form-text text-muted">Max. 2 MB Format PNG, JPG, & JPEG.</small>
                             </div>
                             <div class="form-group col-sm-10">
                                 <label for="id_kategori">Kategori Berita</label>

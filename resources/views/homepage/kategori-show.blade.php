@@ -41,11 +41,10 @@
                                     </div>
                                     <div class="col-sm-8 grid-margin">
                                         <h2 class="font-weight-600 mb-2">
-                                            <a
-                                                href="{{ route('berita.show', [$data->slug]) }}">{{ $data->judul }}</a>
+                                            <a href="{{ route('berita.show', [$data->slug]) }}">{{ $data->judul }}</a>
                                         </h2>
                                         <p class="fs-13 text-muted mb-0">
-                                            <span class="mr-2">{{ $data->nama_kategori }} </span>
+                                            <span class="mr-2">{{ $data->nama_kategori }}</span>
                                             @php
                                                 echo Carbon\Carbon::parse($data->created_at)->isoFormat('D MMM Y');
                                             @endphp
@@ -79,7 +78,7 @@
                                             style="color: black">{{ $latest->judul }}</a>
                                     </h3>
                                     <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2">{{ $latest->nama_kategori }} </span>
+                                        <span class="mr-2">{{ $latest->nama_kategori }}</span>
                                         @php
                                             echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();
                                         @endphp

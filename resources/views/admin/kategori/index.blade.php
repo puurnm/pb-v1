@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -44,7 +44,7 @@
                                                 {!! Form::open(['route' => ['kategori.destroy', $kategori->id_kategori], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
                                                     <a href="{{ route('kategori.edit', [$kategori->id_kategori]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

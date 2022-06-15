@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -49,7 +49,7 @@
                                                 <div class='btn-group'>
                                                     <a href="{{ route('news.show', [$berita->id_berita]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                                                     <a href="{{ route('news.edit', [$berita->id_berita]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

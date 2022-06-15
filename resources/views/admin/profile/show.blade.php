@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -16,6 +16,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="animated fadeIn">
+        @include('flash::message')
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">

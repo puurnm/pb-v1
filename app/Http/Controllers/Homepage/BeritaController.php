@@ -19,13 +19,13 @@ class BeritaController extends Controller
     {
         $beritas = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori','beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','ASC')->simplePaginate(10);
-        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita', 'ASC')->simplePaginate(10);
+        $kategori = KategoriBerita::orderBy('id_kategori', 'ASC')->get();
         $latests = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','DESC')->simplePaginate(3);
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita', 'DESC')->simplePaginate(3);
 
         return view('homepage.berita', compact('beritas', 'kategori', 'latests'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
@@ -41,27 +41,29 @@ class BeritaController extends Controller
     {
         $berita = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori','beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
             ->where('beritas.slug', $slug)->first();
         $latests = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','DESC')->simplePaginate(3);
-        return view('homepage.berita-show',compact('berita','latests'))
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita', 'DESC')->simplePaginate(3);
+        return view('homepage.berita-show', compact('berita', 'latests'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     public function search(Request $request)
     {
         $keyword = $request->search;
-        $beritas = Berita::where('judul', 'like', "%" . $keyword . "%")->simplePaginate(5);
-        $kategori = KategoriBerita::orderBy('id_kategori','ASC')->get();
+        $beritas = DB::table('beritas')
+            ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where(DB::raw('lower(beritas.judul)'), 'like', '%' . strtolower($keyword) . '%')->simplePaginate(10);
         $latests = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita','beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->orderBy('id_berita','DESC')->simplePaginate(3);
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->orderBy('id_berita', 'DESC')->simplePaginate(3);
 
-        return view('homepage.search', compact('keyword', 'beritas', 'kategori', 'latests'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('homepage.search', compact('keyword', 'beritas', 'latests'))
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 }

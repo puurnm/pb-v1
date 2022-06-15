@@ -45,7 +45,7 @@
                                                 href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                                         </h2>
                                         <p class="fs-13 text-muted mb-0">
-                                            <span class="mr-2">{{ $berita->nama_kategori }}
+                                            <span class="mr-2">{{ $berita->nama_kategori }}</span>
                                             @php
                                                 echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
                                             @endphp
@@ -79,8 +79,10 @@
                                             style="color: black">{{ $latest->judul }}</a>
                                     </h3>
                                     <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2">{{ $latest->nama_kategori }}
-                                        </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
+                                        <span class="mr-2">{{ $latest->nama_kategori }}</span>
+                                        @php
+                                            echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();
+                                        @endphp
                                     </p>
                                 </div>
                             @endforeach

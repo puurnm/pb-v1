@@ -30,19 +30,19 @@ class HomeController extends Controller
         $bigproduct = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->where('nama_kategori', '=', 'Produk')->orderByRaw('RAND()')->take(1)->get();
+            ->where('nama_kategori', '=', 'Produk')->inRandomOrder()->take(1)->get();
         $smallproduct = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->where('nama_kategori', '=', 'Produk')->orderByRaw('RAND()')->take(4)->get();
+            ->where('nama_kategori', '=', 'Produk')->inRandomOrder()->take(4)->get();
         $umkm = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->where('nama_kategori', '=', 'UMKM')->orderByRaw('RAND()')->take(2)->get();
+            ->where('nama_kategori', '=', 'UMKM')->inRandomOrder()->take(2)->get();
         $edukasi = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->where('nama_kategori', '=', 'Edukasi')->orderByRaw('RAND()')->take(4)->get();
+            ->where('nama_kategori', '=', 'Edukasi')->inRandomOrder()->take(4)->get();
 
         return view('homepage.home', compact('main', 'latest', 'berita', 'kategori', 'bigproduct', 'smallproduct', 'umkm', 'edukasi'))
             ->with('i', ($request->input('page', 1) - 1) * 3);

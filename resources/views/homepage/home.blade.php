@@ -31,9 +31,9 @@
                                     style="color: white">{{ $utama->judul }}</a>
                             </h1>
                             <div class="fs-12">
-                                <?php
-                                echo Carbon\Carbon::parse($utama->created_at)->isoFormat('D MMM Y');
-                                ?>
+                                @php
+                                    echo Carbon\Carbon::parse($utama->created_at)->isoFormat('D MMM Y');
+                                @endphp
                             </div>
                         </div>
                     </div>
@@ -53,9 +53,9 @@
                                     </h6>
                                     <div class="fs-12">
                                         <span class="mr-2">{{ $latest->nama_kategori }} </span>
-                                        <?php
-                                        echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();
-                                        ?>
+                                        @php
+                                            echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();
+                                        @endphp
                                     </div>
                                 </div>
                                 <div class="rotate-img">
@@ -75,8 +75,8 @@
                         <h2>Kategori</h2>
                         <ul class="vertical-menu">
                             @foreach ($kategori as $e => $kategori)
-                                <li><a
-                                        href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
+                                <li>
+                                    <a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -100,7 +100,7 @@
                                         <a href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                                     </h2>
                                     <div class="fs-13 mb-2">
-                                        <span class="mr-2">{{ $berita->nama_kategori }} </span>
+                                        <span class="mr-2">{{ $berita->nama_kategori }}</span>
                                         @php
                                             echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
                                         @endphp
@@ -143,7 +143,7 @@
                                                 </a>
                                             </h2>
                                             <p class="fs-13 mb-1 text-muted">
-                                                <span class="mr-2">{{ $big->nama_kategori }} </span>
+                                                <span class="mr-2">{{ $big->nama_kategori }}</span>
                                                 @php
                                                     echo Carbon\Carbon::parse($big->created_at)->isoFormat('D MMM Y');
                                                 @endphp
@@ -168,7 +168,7 @@
                                                 </a>
                                             </h3>
                                             <p class="fs-13 text-muted mb-0">
-                                                <span class="mr-2">{{ $small->nama_kategori }} </span>
+                                                <span class="mr-2">{{ $small->nama_kategori }}</span>
                                                 @php
                                                     echo Carbon\Carbon::parse($small->created_at)->isoFormat('D MMM Y');
                                                 @endphp
@@ -199,7 +199,7 @@
                                                     </a>
                                                 </p>
                                                 <p class="fs-13 text-muted mb-0">
-                                                    <span class="mr-2">{{ $data->nama_kategori }} </span>
+                                                    <span class="mr-2">{{ $data->nama_kategori }}</span>
                                                     @php
                                                         echo Carbon\Carbon::parse($data->created_at)->isoFormat('D MMM Y');
                                                     @endphp

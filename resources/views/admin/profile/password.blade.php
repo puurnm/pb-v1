@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -14,21 +14,20 @@
 @endsection
 
 @section('content')
-@if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <div class="container-fluid">
     <div class="animated fadeIn">
         <div class="row">
             <div class="col-lg-12">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger col-lg-12" role="alert">
+                        <h4 class="alert-heading">Whoops!</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-edit fa-lg"></i>
@@ -38,10 +37,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('password.store') }}">
                             @csrf
-
-                             @foreach ($errors->all() as $error)
-                                <p class="text-danger">{{ $error }}</p>
-                             @endforeach
 
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>

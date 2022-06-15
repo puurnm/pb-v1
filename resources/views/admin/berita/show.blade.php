@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -26,39 +26,32 @@
                         <i class="fa fa-info"></i>
                         <strong>Detail</strong>
                     </div>
-
                     <div class="card-body">
-                        <div class="col-lg-9 stretch-card grid-margin">
-                            <div class="card">
-                              <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-10">
                                 <div class="row">
-                                  <div class="col-sm-4 grid-margin">
-                                    <div class="position-relative">
-                                      <div class="rotate-img">
-                                        <img
-                                          src="{{ $berita->image }}"
-                                          alt="thumb"
-                                          class="img-thumbnail"
-                                        />
-                                      </div>
+                                    <div class="col-sm-10 grid-margin text-center">
+                                        <img src="{{ $berita->image }}" alt="banner" class="img-fluid" />
                                     </div>
-                                  </div>
-                                  <div class="col-sm-8  grid-margin">
-                                    <h2 class="mb-2 font-weight-600">
-                                        {{ $berita->judul }}
-                                    </h2>
-                                    <div class="fs-13 mb-2">
-                                      <span class="mr-2">Photo </span>10 Minutes ago
+                                    <div class="col-sm-10 grid-margin">
+                                        <h2 class="font-weight-600 mb-2">
+                                            {{ $berita->judul }}
+                                        </h2>
+                                        <p class="fs-13 text-muted mb-0">
+                                            <span class="mr-2">
+                                            @php
+                                                echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
+                                            @endphp
+                                        </p>
+                                        <p class="fs-15">
+                                            {!! $berita->isi !!}
+                                        </p>
                                     </div>
-                                    <p class="mb-0">
-                                        {!! $berita->isi !!}
-                                    </p>
-                                  </div>
                                 </div>
-                              </div>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="card-body">
                         <div>
                             <a class="float-left" href="{{ route('news.index') }}"><i class="fa fa-arrow-left fa-lg" style="color: black"></i></a>
                         </div>

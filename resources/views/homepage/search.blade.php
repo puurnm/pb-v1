@@ -32,7 +32,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8">
-                            @foreach ($beritas as $e => $berita)
+                            @foreach ($beritas as $key => $berita)
                                 <div class="row">
                                     <div class="col-sm-4 grid-margin">
                                         <div class="rotate-img">
@@ -45,8 +45,10 @@
                                                 href="{{ route('berita.show', [$berita->slug]) }}">{{ $berita->judul }}</a>
                                         </h2>
                                         <p class="fs-13 text-muted mb-0">
-                                            <span class="mr-2">{{ $berita->nama_kategori }}
-                                            </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
+                                            <span class="mr-2">{{ $berita->nama_kategori }}</span>
+                                            @php
+                                                echo Carbon\Carbon::parse($berita->created_at)->isoFormat('D MMM Y');
+                                            @endphp
                                         </p>
                                         <p class="fs-15">
                                             <strong>{{ $berita->penulis }}</strong> -
@@ -73,12 +75,14 @@
                                         <img src="{{ $latest->image }}" alt="banner" class="img-fluid" />
                                     </div>
                                     <h3 class="mt-3 font-weight-600">
-                                        <a href="{{ route('berita.show', [$berita->slug]) }}"
+                                        <a href="{{ route('berita.show', [$latest->slug]) }}"
                                             style="color: black">{{ $latest->judul }}</a>
                                     </h3>
                                     <p class="fs-13 text-muted mb-0">
-                                        <span class="mr-2">{{ $latest->nama_kategori }}
-                                        </span>{{ date('M j, Y', strtotime($berita->created_at)) }}
+                                        <span class="mr-2">{{ $latest->nama_kategori }}</span>
+                                        @php
+                                            echo Carbon\Carbon::parse($latest->created_at)->diffForHumans();
+                                        @endphp
                                     </p>
                                 </div>
                             @endforeach
