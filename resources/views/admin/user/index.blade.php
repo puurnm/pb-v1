@@ -23,7 +23,9 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         User
-                        <a class="float-right" href="{{ route('user.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @can('user-create')
+                            <a class="float-right" href="{{ route('user.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -54,10 +56,10 @@
                                                 {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
                                                     <a href="{{ route('user.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                                                    @can('role-edit')
+                                                    @can('user-edit')
                                                         <a href="{{ route('user.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
                                                     @endcan
-                                                    @can('role-delete')
+                                                    @can('user-delete')
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
                                                     @endcan
                                                 </div>

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -27,7 +27,7 @@ Route::get('/', function () {
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\Homepage\HomeController::class, 'index'])->name('home');
 Route::get('/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'index'])->name('berita.index');
-Route::get('/kategori/{id_kategori}', [App\Http\Controllers\Homepage\KategoriController::class, 'show'])->name('kategoriShow');
+Route::get('/kategori/{slug}', [App\Http\Controllers\Homepage\KategoriController::class, 'show'])->name('kategoriShow');
 Route::get('/berita/{slug}', [App\Http\Controllers\Homepage\BeritaController::class, 'show'])->name('berita.show');
 Route::get('/search/berita', [App\Http\Controllers\Homepage\BeritaController::class, 'search'])->name('search');
 Route::resource('kategori-berita', KategoriController::class);

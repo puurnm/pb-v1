@@ -19,6 +19,10 @@ class BeritaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:berita-list|berita-create|berita-edit|berita-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:berita-create', ['only' => ['create','store']]);
+        $this->middleware('permission:berita-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:berita-delete', ['only' => ['destroy']]);
     }
 
     /**

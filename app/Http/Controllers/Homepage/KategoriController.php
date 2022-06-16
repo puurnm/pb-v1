@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Homepage;
 
 use App\Http\Controllers\Controller;
-use App\Models\Berita;
 use App\Models\KategoriBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +15,13 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $slug)
     {
-        $kategori = KategoriBerita::findOrFail($id);
+        $kategori = KategoriBerita::where('slug', $slug)->first();
         $berita = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
-            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
-            ->where('beritas.id_kategori', $id)->simplePaginate(10);
+            ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'kategori_berita.slug', 'beritas.isi', 'beritas.penulis', 'beritas.image', 'beritas.slug', 'beritas.created_at')
+            ->where('kategori_berita.slug', $slug)->simplePaginate(10);
         $latest = DB::table('beritas')
             ->join('kategori_berita', 'beritas.id_kategori', '=', 'kategori_berita.id_kategori')
             ->select('beritas.id_berita', 'beritas.judul', 'kategori_berita.nama_kategori', 'beritas.image', 'beritas.slug', 'beritas.created_at')

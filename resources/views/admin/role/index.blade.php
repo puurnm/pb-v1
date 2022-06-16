@@ -23,7 +23,9 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         Role
-                        <a class="float-right" href="{{ route('role.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @can('role-create')
+                            <a class="float-right" href="{{ route('role.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">

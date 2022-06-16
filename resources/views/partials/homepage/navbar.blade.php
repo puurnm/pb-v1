@@ -37,12 +37,12 @@
                                         Kategori
                                     </a>
                                     @php
-                                        $kategori = App\Models\KategoriBerita::orderBy('nama_kategori', 'ASC')->get();
+                                        $kategori = App\Models\KategoriBerita::orderBy('slug', 'ASC')->get();
                                     @endphp
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @foreach ($kategori as $key => $kategori)
                                             <a class="dropdown-item"
-                                                href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
+                                                href="{{ route('kategoriShow', [$kategori->slug]) }}">{{ $kategori->nama_kategori }}</a>
                                         @endforeach
                                     </div>
                                 </div>

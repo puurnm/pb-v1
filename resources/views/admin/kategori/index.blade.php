@@ -23,7 +23,9 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         Kategori
-                        <a class="float-right" href="{{ route('kategori.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @can('kategori-create')
+                            <a class="float-right" href="{{ route('kategori.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -43,8 +45,12 @@
                                             <td>
                                                 {!! Form::open(['route' => ['kategori.destroy', $kategori->id_kategori], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
-                                                    <a href="{{ route('kategori.edit', [$kategori->id_kategori]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
+                                                    @can('kategori-edit')
+                                                        <a href="{{ route('kategori.edit', [$kategori->id_kategori]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('kategori-delete')
+                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
+                                                    @endcan
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

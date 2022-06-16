@@ -29,21 +29,27 @@
                         <h2>Welcome Back, {{ Auth::user()->name }} !</h2>
                         {{ __('You are logged in!') }}
 
-                        <div class="card" style="width: 15rem; margin-top: 15px">
-                            <div class="card-header">
-                                Jumlah User Terdaftar
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $user }}</h5>
-                            </div>
-                        </div>
+                        <div class="body flex-grow-1 px-3 mt-3">
+                            <div class="container-lg">
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card mb-4 border-primary">
+                                            <div class="card-body text-primary">
+                                                <h5 class="card-title">{{ $user }}</h5>
+                                                <h6 class="card-text">User Terdaftar</h6>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        <div class="card" style="width: 15rem; margin-top: -145px; margin-left: 250px">
-                            <div class="card-header">
-                                Jumlah Berita Dibuat
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $berita }}</h5>
+                                    <div class="col-sm-6 col-lg-3">
+                                        <div class="card mb-4 border-success">
+                                            <div class="card-body text-success">
+                                                <h5 class="card-title">{{ $berita }}</h5>
+                                                <h6 class="card-text">Berita Dibuat</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

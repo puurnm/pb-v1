@@ -11,6 +11,10 @@ class KategoriBeritaController extends Controller
 {
     public function __contruct(){
         $this->middleware('auth');
+        $this->middleware('permission:kategori-list|kategori-create|kategori-edit|kategori-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:kategori-create', ['only' => ['create','store']]);
+        $this->middleware('permission:kategori-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:kategori-delete', ['only' => ['destroy']]);
     }
 
     public function index(Request $request){

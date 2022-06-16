@@ -23,7 +23,9 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i>
                         Berita
-                        <a class="float-right" href="{{ route('news.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @can('berita-create')
+                            <a class="float-right" href="{{ route('news.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-sm">
@@ -48,8 +50,12 @@
                                                 {!! Form::open(['route' => ['news.destroy', $berita->id_berita], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
                                                     <a href="{{ route('news.show', [$berita->id_berita]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('news.edit', [$berita->id_berita]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
+                                                    @can('berita-edit')
+                                                        <a href="{{ route('news.edit', [$berita->id_berita]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
+                                                    @endcan
+                                                    @can('berita-delete')
+                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger show_confirm']) !!}
+                                                    @endcan
                                                 </div>
                                                 {!! Form::close() !!}
                                             </td>

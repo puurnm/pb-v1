@@ -76,7 +76,7 @@
                         <ul class="vertical-menu">
                             @foreach ($kategori as $e => $kategori)
                                 <li>
-                                    <a href="{{ route('kategoriShow', [$kategori->id_kategori]) }}">{{ $kategori->nama_kategori }}</a>
+                                    <a href="{{ route('kategoriShow', [$kategori->slug]) }}">{{ $kategori->nama_kategori }}</a>
                                 </li>
                             @endforeach
                         </ul>
